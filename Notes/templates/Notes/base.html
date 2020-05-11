@@ -1,0 +1,64 @@
+{% load static %}
+<head>
+	<!DOCTYPE html>
+	<html>
+	<head>
+		<title>
+			Study Gallery
+			</title>
+			<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        
+	<style>
+.jumbotron{
+        background-image:url({% static 'Notes/images/background.jpg' %});
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        height: 500;
+    }
+</style>	
+	</head>
+	<body>
+    <body data-spy="scroll" data-target="#navScrollspy">
+    	<nav class="navbar bg-primary navbar-dark navbar-expand-md ">
+    		<a href="#" class="navbar-brand"><i class="fa fa-user-graduate" aria-hidden="true"></i>GOD FOR COLLEGE STUDENT(GCS)</a>
+    		<button type="button" class="navbar-toggler navbar-toggler-right" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    		<div class="collapse navbar-collapse" id="
+    		navbarNav">
+    		<ul class="navbar-nav" id="navScrollspy">
+    			<li class="nav-item">
+    				<a href="#" class="nav-link">Home</a>
+    			</li>
+    			<li class="nav-item">
+    				<a href="#" class="nav-link">About</a>
+    			</li>
+    			<li class="nav-item">
+    				<a href="#" class="nav-link">Notes</a>
+    			</li>
+    			<li class="nav-item">
+    				<a href="#" class="nav-link">Books PDF</a>
+    			</li>
+    			<li class="nav-item">
+    				<a href="#" class="nav-link">Exam Papers</a>
+    			</li>
+    			<li class="nav-item">
+    				<a href="#" class="nav-link">Announcements</a>
+    			</li>
+    			</ul>
+    		</div></nav>
+
+<div>
+       {% block content %}
+       {% endblock %}
+   </div>
+	</body>
+	</html>

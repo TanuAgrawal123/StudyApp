@@ -36,6 +36,13 @@ class Papers(models.Model):
 	batch=models.CharField(max_length=10)
 	Type_of_paper=models.CharField(max_length=10, default='EndSem')
 
+class Pdfbooks(models.Model):
+	subject=models.CharField(max_length=30)
+	author=models.CharField(max_length=50)
+	published_year=models.IntegerField(null=True)
+	pdf=models.FileField(upload_to="")
+
+
 	
 
 
