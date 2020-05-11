@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Notes, Papers, Student, Teacher, pdfBooks
+from .models import Notes, Papers, pdfBooks
 
 class NotesSerializers(serializers.ModelSerializer):
 	class Meta:
