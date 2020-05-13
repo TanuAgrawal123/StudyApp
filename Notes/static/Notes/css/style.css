@@ -1,0 +1,15 @@
+.notes{
+	height:300;
+	width:450;
+
+}
+.dropdown .dropdown-submenu {
+  position: relative;
+  border: 1px solid black;
+}
+
+.dropdown-submenu .dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -1px;
+}

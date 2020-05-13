@@ -1,5 +1,4 @@
 {% load static %}
-<head>
 	<!DOCTYPE html>
 	<html>
 	<head>
@@ -8,7 +7,7 @@
 			</title>
 			<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+<link rel="stylesheet" type="text/css" href="{% static 'Notes/css/style.css' %}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -60,5 +59,54 @@
        {% block content %}
        {% endblock %}
    </div>
+   <footer class="bg-light">
+					
+						<div class="continer">
+							<div class="row ml-2">
+                             <div class="col-12 col-sm-6 col-lg-3">
+					         <h6>About Us</h6>
+					         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas feugiat, urna ut pharetra ultricies, augue tellus euismod turpis, vitae semper ipsum augue a velit.
+					     </div>
+
+								<div class="col-12 col-sm-6 col-lg-3">
+							<h6>Qick links</h6>
+							<ul class="list-unstyled">
+								<li><a href="#">Home</a></li>
+								<li><a href="#">Want to Contribute</a></li>
+								
+							</ul></div>
+							
+							
+							<div class="col-12 col-sm-6 col-lg-3">
+                             <h6>Follow us</h6>
+
+                             <ul class="list-unstyled">
+								<li><a href="#"><i class="fa fa-facebook fa-fw" aria-hidden="true"></i>Facebook</a></li>
+								
+								<li><a href="#"><i class="fa fa-twitter fa-fw" aria-hidden="true"></i>Twitter</a></li>
+								
+								<li><a href="#"><i class="fa fa-linkedin fa-fw" aria-hidden="true"></i>Linkedin</a></li>
+							</ul>
+						
+					</div>
+					<div class="col-12 col-sm-6 col-lg-3">
+						<h6>Our location:</h6>
+						<address>
+							<strong>GCS</strong></br>
+							Kalpana Chawla<br>
+							BIET Jhansi<br>
+							India<br>
+							<i class="fa fa-phone fa-fw" aria-hidden="true"></i>
+							<span class="sr-only">Mobile</span><a href="tel:+1217363600">8476935639</a><br>
+							<i class="fa fa-inbox fa-fw" aria-hidden="true"></i><span class="sr-only">Mail</span><a href="mailto:info@Cameo.com">GCS@gmail.com</a>
+						</address></div></div>
+						<div class="row">
+							<div class="col-12 col-sm-6 col-lg-9">
+						<ul class="list-inline">
+							<li class="list-inline-item">&copy;2020 GCS</li>
+							<li class="list-inline-item">All right reserved</li>
+							<li class="list-inline-item"><a href="#" data-toggle="modal" data-target="#modal">Terms of use and privacy policy</a></li>
+						</ul></div>
+						</div></div></div></div></footer>
 	</body>
 	</html>

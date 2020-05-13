@@ -9,12 +9,19 @@ class Student(models.Model):
 	Year=models.IntegerField()
 	Branch=models.TextField(max_length=50)
 	Email=models.EmailField(null=True)
+	
+	def __str__(self):
+		return self.Name
+
 
 class Teacher(models.Model):
 	Name=models.CharField(max_length=50)
 	Department=models.CharField(max_length=50)
 	Mobile=models.BigIntegerField()
 	Email=models.EmailField(null=True)
+	def __str__(self):
+		return self.Name
+
 
 
 class Notes(models.Model):
