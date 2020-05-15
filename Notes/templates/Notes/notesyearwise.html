@@ -23,22 +23,82 @@ without asking....</h3>
 </div>
 </div>
 
+	
+<div class="YearWise container align-items-center">
+     <span class="btn bt-primary text-light bg-primary float-left m-5"><a class="text-light" href="{% url 'notescs' year=1 branch='NOBRANCH' %}">First Year</a></span>
+<div class="dropdown">
+			<span class="btn bt-primary text-light bg-primary float-left m-5">Second Year</span>
+			<div class="dropdown-item">
+				<a href="{% url 'notesyrbranch' year=2 branch='CSE' %}">CSE</a>
+				<br>
+				<a href="{% url 'notesyrbranch' year=2 branch='IT' %}" >IT</a>
+				<br>
+				<a href="{% url 'notesyrbranch' year=2 branch='EC' %}" >EC</a>
+				<br>
+				<a href="{% url 'notesyrbranch' year=2 branch='EE' %}" >EE</a>
+				<br>
+				<a href="{% url 'notesyrbranch' year=2 branch='ME' %}" >ME</a>
+				<br>
+				<a href="{% url 'notesyrbranch' year=2 branch='CE' %}" >CE</a>
+				<br>
+				<a href="{% url 'notesyrbranch' year=2 branch='CH' %}" >CH</a>
+				<br>
+			
 
-
-<div class="dropdown m-2">
-<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">First Year
-<span class="caret"></span></button>
-<ul class="dropdown-menu">
-   <li class="dropdown-submenu">
-        <a class="test" tabindex="-1" href="#">New dropdown <span class="caret"></span></a>
-        <ul class="dropdown-menu">
-          <li><a tabindex="-1" href="#">2nd level dropdown</a></li>
-          <li><a tabindex="-1" href="#">2nd level dropdown</a></li>
- 
-</ul>
-</li>
-<li>hh</li>
-</ul>
+			</div>
 </div>
 
+			
+			
+		
+<div class="dropdown">
+			<span class="btn bt-primary text-light bg-primary float-left m-5">Third Year</span>
+			<div class="dropdown-item">
+				<a href="{% url 'notesyrbranch' year=3 branch='CSE' %}">CSE</a>
+				<br>
+				<a href="{% url 'notesyrbranch' year=3 branch='IT' %}" >IT</a>
+				<br>
+				<a href="{% url 'notesyrbranch' year=3 branch='EC' %}" >EC</a>
+				<br>
+				<a href="{% url 'notesyrbranch' year=3 branch='EE' %}" >EE</a>
+				<br>
+				<a href="{% url 'notesyrbranch' year=3 branch='ME' %}" >ME</a>
+				<br>
+				<a href="{% url 'notesyrbranch' year=3 branch='CE' %}" >CE</a>
+				<br>
+				<a href="{% url 'notesyrbranch' year=3 branch='CH' %}" >CH</a>
+				<br>
+			
+
+			
+
+			</div>
+</div>
+
+			
+<div class="dropdown">
+			
+      <span class="btn bt-primary text-light bg-primary float-left m-5">Final Year</span>
+			<div class="dropdown-item">
+				<a href="{% url 'notesyrbranch' year=4 branch='CSE' %}">CSE</a>
+				<br>
+				<a href="{% url 'notesyrbranch' year=4 branch='IT' %}" >IT</a>
+				<br>
+				<a href="{% url 'notesyrbranch' year=4 branch='EC' %}" >EC</a>
+				<br>
+				<a href="{% url 'notesyrbranch' year=4 branch='EE' %}" >EE</a>
+				<br>
+				<a href="{% url 'notesyrbranch' year=4 branch='ME' %}" >ME</a>
+				<br>
+				<a href="{% url 'notesyrbranch' year=4 branch='CE' %}" >CE</a>
+				<br>
+				<a href="{% url 'notesyrbranch' year=4 branch='CH' %}" >CH</a>
+				<br>
+			
+
+			</div>
+</div>
+</div>
+
+	</div>		
 {% endblock content %}

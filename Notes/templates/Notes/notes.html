@@ -1,0 +1,30 @@
+
+{% extends "Notes/base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="text-center m-2 text-danger"><H1 class="m-4"><strong>I think it’s a new feature. <br>
+ Don’t tell anyone it was an accident.</strong></H1>
+</div>
+<div>
+	<br>
+	<br>
+	{% for notes in notes_cs_details %}
+	<br>
+	{{ notes.subject }}
+	<br>
+	{{ notes.teacher }}
+	<br>
+	{{ notes.data }}
+	<br>
+	{{ notes.Date_of_upload }}
+	<br>
+	{{ notes.year }}
+	<br>
+	{{ notes.branch }}
+	<br>
+	{% endfor %}
+	<br>
+</div>
+
+{% endblock content %}

@@ -29,6 +29,8 @@ class Notes(models.Model):
 	teacher=models.ForeignKey(Teacher, on_delete=models.CASCADE)
 	data=models.FileField(upload_to="")
 	Date_of_upload=models.DateTimeField(default=timezone.now)
+	branch=models.CharField(max_length=50, null=True)
+	year=models.IntegerField(default=1)
 	
 	upvote=models.IntegerField(default=0)
 	downvote=models.IntegerField(default=0)

@@ -3,13 +3,30 @@
 	width:450;
 
 }
-.dropdown .dropdown-submenu {
-  position: relative;
-  border: 1px solid black;
+.YearWise{
+	height: 200px;
+	align-items: center;
 }
 
-.dropdown-submenu .dropdown-menu {
-  top: 0;
-  left: 100%;
-  margin-top: -1px;
+.dropdown {
+  position: relative;
+  display: inline-block;
+  margin-left: 10px;
+  float: left;
+}
+.dropbtn{
+cursor: pointer;
+}
+.dropdown-item {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  padding: 12px 16px;
+  z-index: 2;
+}
+
+.dropdown:hover .dropdown-item {
+  display: block;
 }
