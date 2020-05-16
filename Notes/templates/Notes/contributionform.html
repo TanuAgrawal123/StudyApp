@@ -1,0 +1,16 @@
+{% extends 'Notes/base.html'  %}
+{% load static %}
+{% block content %}
+<div class="row">
+  <div class="col-lg-12">
+    
+    <h2>New post</h2>
+    <form method="POST" class="Note-form" enctype="multipart/form-data">
+      {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="save btn btn-default">Save</button>
+    </form>
+
+  </div>
+</div>
+{% endblock %}

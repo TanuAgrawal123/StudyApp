@@ -4,6 +4,26 @@ from django.conf import settings
 from django.utils import timezone
 from django.contrib.auth.models import User
 
+
+
+Branch_choice = [
+    ('CSE', 'CSE'),
+    ('IT', 'IT'),
+    ('EE', 'EE'),
+    ('ECE', 'ECE'),
+    ('ME', 'ME'),
+    ('CE', 'CE'),
+    ('CH', 'CH'),
+    ('NOBRANCH', 'NOBRANCH'),
+
+    
+]
+
+year_choice=[
+(1,1),(2,2),(3,3),(4,4),
+]
+
+
 class Student(models.Model):
 	Name=models.CharField(max_length=50)
 	Year=models.IntegerField()
@@ -26,26 +46,37 @@ class Teacher(models.Model):
 
 class Notes(models.Model):
 	subject=models.CharField(max_length=50)
+    
 	teacher=models.ForeignKey(Teacher, on_delete=models.CASCADE)
-	data=models.FileField(upload_to="")
+	data=models.FileField(upload_to="document/")
 	Date_of_upload=models.DateTimeField(default=timezone.now)
-	branch=models.CharField(max_length=50, null=True)
-	year=models.IntegerField(default=1)
-	
+	branch=models.CharField(
+        max_length=10,
+        choices=Branch_choice,
+        default=0,)
+	year=models.IntegerField(choices=year_choice, default=1,)
 	upvote=models.IntegerField(default=0)
 	downvote=models.IntegerField(default=0)
-	owner_of_notes=models.ForeignKey(Student, on_delete=models.CASCADE)
+	owner_of_notes=models.ForeignKey(Student, on_delete=models.CASCADE, null=True)
 
 
 class Papers(models.Model):
 	subject=models.CharField(max_length=30)
-	branch=models.CharField(max_length=50)
+	branch=models.CharField(
+        max_length=10,
+        choices=Branch_choice,
+        default=0,
+    )
 	data=models.FileField(upload_to="")
 	Date_of_upload=models.DateTimeField(default=timezone.now)
-	batch=models.CharField(max_length=10)
-	Type_of_paper=models.CharField(max_length=10, default='EndSem')
+	batch=models.IntegerField(choices=year_choice, default=1,)
+	Type_of_paper=models.CharField(max_length=10, choices=[('1','EndSem'), ('2','ClassTest')], default='EndSem')
 
 class Pdfbooks(models.Model):
+	branch=models.CharField(
+        max_length=10,
+        choices=Branch_choice,
+        default=0,)
 	subject=models.CharField(max_length=50)
 	author=models.CharField(max_length=50)
 	published_year=models.IntegerField(null=True)

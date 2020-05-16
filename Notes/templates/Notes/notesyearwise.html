@@ -25,7 +25,7 @@ without asking....</h3>
 
 	
 <div class="YearWise container align-items-center">
-     <span class="btn bt-primary text-light bg-primary float-left m-5"><a class="text-light" href="{% url 'notescs' year=1 branch='NOBRANCH' %}">First Year</a></span>
+     <span class="btn bt-primary text-light bg-primary float-left m-5"><a class="text-light" href="{% url 'notesyrbranch' year=1 branch='NOBRANCH' %}">First Year</a></span>
 <div class="dropdown">
 			<span class="btn bt-primary text-light bg-primary float-left m-5">Second Year</span>
 			<div class="dropdown-item">
@@ -54,7 +54,7 @@ without asking....</h3>
 <div class="dropdown">
 			<span class="btn bt-primary text-light bg-primary float-left m-5">Third Year</span>
 			<div class="dropdown-item">
-				<a href="{% url 'notesyrbranch' year=3 branch='CSE' %}">CSE</a>
+				<a href="{% url 'notesyrbranch' year='3' branch='CSE' %}">CSE</a>
 				<br>
 				<a href="{% url 'notesyrbranch' year=3 branch='IT' %}" >IT</a>
 				<br>
