@@ -3,6 +3,8 @@ from django.db import models
 from django.conf import settings
 from django.utils import timezone
 from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 
 
@@ -25,13 +27,15 @@ year_choice=[
 
 
 class Student(models.Model):
-	Name=models.CharField(max_length=50)
-	Year=models.IntegerField()
-	Branch=models.TextField(max_length=50)
+	Name=models.CharField(max_length=50,null=True)
+	Year=models.IntegerField(default=1)
+	Branch=models.CharField(max_length=50)
 	Email=models.EmailField(null=True)
-	
+
 	def __str__(self):
 		return self.Name
+	
+
 
 
 class Teacher(models.Model):
@@ -43,10 +47,8 @@ class Teacher(models.Model):
 		return self.Name
 
 
-
 class Notes(models.Model):
 	subject=models.CharField(max_length=50)
-    
 	teacher=models.ForeignKey(Teacher, on_delete=models.CASCADE)
 	data=models.FileField(upload_to="document/")
 	Date_of_upload=models.DateTimeField(default=timezone.now)
@@ -57,8 +59,7 @@ class Notes(models.Model):
 	year=models.IntegerField(choices=year_choice, default=1,)
 	upvote=models.IntegerField(default=0)
 	downvote=models.IntegerField(default=0)
-	owner_of_notes=models.ForeignKey(Student, on_delete=models.CASCADE, null=True)
-
+	
 
 class Papers(models.Model):
 	subject=models.CharField(max_length=30)

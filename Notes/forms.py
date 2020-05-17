@@ -1,5 +1,9 @@
 from django import forms
-from .models import Notes, Pdfbooks, Papers
+from .models import Notes, Pdfbooks, Papers, Student
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
+
+
 
 class ContributionNoteForm(forms.ModelForm):
 	class Meta:
@@ -8,5 +12,7 @@ class ContributionNoteForm(forms.ModelForm):
 
 
 
-
-
+class SignUpForm(forms.ModelForm):
+	class Meta:
+		model=Student
+		fields=['Name', 'Year','Branch', 'Email']

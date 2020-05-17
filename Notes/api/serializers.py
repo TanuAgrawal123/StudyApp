@@ -4,7 +4,7 @@ from ..models import Notes, Papers, Pdfbooks, Teacher
 class NotesSerializers(serializers.ModelSerializer):
 	class Meta:
 		model=Notes
-		fields=['subject', 'teacher', 'data','Date_of_upload','owner_of_notes']
+		fields=['subject', 'teacher','year' ,'data','Date_of_upload',]
 
 
 

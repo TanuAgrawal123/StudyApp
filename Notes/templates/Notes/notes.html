@@ -6,25 +6,33 @@
 <div class="text-center m-2 text-danger"><H1 class="m-4"><strong>I think it’s a new feature. <br>
  Don’t tell anyone it was an accident.</strong></H1>
 </div>
-<div>
+<div class="container card">
+	<h3> No worry when GCS is here!!
+	<h3> {{branch}}</h3>
+	<h3>{{year}}rd</h3>
+
 	<br>
 	<br>
+	
 	{% for notes in notes_cs_details %}
+	
 	<br>
+	<h6>Subject</h6>
 	{{ notes.subject }}
 	<br>
+<h6>Teacher</h6>
 	{{ notes.teacher }}
 	<br>
-	<a href="{{ notes.data.url }}">file link</a> 
+
+	
+	<a href="{{ notes.data.url }}">{{notes.subject}} Pdf</a> 
 	<br>
+	<h6> Date of Upload</h6>
 	{{ notes.Date_of_upload }}
 	<br>
-	{{ notes.year }}
-	<br>
-	{{ notes.branch }}
-	<br>
+<hr>
 	{% endfor %}
-	<br>
+</div
 </div>
 
 {% endblock content %}

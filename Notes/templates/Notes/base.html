@@ -48,7 +48,7 @@
     		navbarNav">
     		<ul class="navbar-nav" id="navScrollspy">
     			<li class="nav-item">
-    				<a href="#" class="nav-link">Home</a>
+    				<a href="{% url 'home' %}" class="nav-link">Home</a>
     			</li>
     			<li class="nav-item">
     				<a href="#" class="nav-link">About</a>
@@ -71,24 +71,29 @@
     			<li class="nav-item">
     				<a href="{% url 'Notes_form' %}" class="nav-link">Want To Contribute</a>
     			</li>
+    			<li class="nav-item">
+    				<button class="bg-danger float-right mx-3"> <a href="{% url 'signup' %}" class="nav-link">Signup</a></button>
+    			</li>
     			</ul>
     		</div></nav>
 
 <div>
+</div>
+
        {% block content %}
        {% endblock %}
-   </div>
+   
    <footer class="bg-light">
 					
 						<div class="continer">
 							<div class="row ml-2">
                              <div class="col-12 col-sm-6 col-lg-3">
 					         <h6>About Us</h6>
-					         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas feugiat, urna ut pharetra ultricies, augue tellus euismod turpis, vitae semper ipsum augue a velit.
+					         Hello We are Here to provide all the study material of our college. 
 					     </div>
 
 								<div class="col-12 col-sm-6 col-lg-3">
-							<h6>Qick links</h6>
+							<h6>Quick links</h6>
 							<ul class="list-unstyled">
 								<li><a href="#">Home</a></li>
 								<li><a href="#">Want to Contribute</a></li>

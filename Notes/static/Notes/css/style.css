@@ -30,3 +30,6 @@ cursor: pointer;
 .dropdown:hover .dropdown-item {
   display: block;
 }
+.Note_form{
+	margin-left: 100px;
+}
