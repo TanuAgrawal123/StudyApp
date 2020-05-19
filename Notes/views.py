@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Notes, Teacher ,Student
+from .models import Notes, Teacher ,Student, Pdfbooks
 from .forms import ContributionNoteForm, SignUpForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import  AuthenticationForm
@@ -14,12 +14,13 @@ def home(request, ):
 			user = authenticate(username=username, password=password)
 			if user is not None:
 				login(request, user)
+
 				
 				return redirect('home')
+
 			
-	else:
-		form = AuthenticationForm()
-		return render(request,"Notes/home.html",{"form":form})
+	form = AuthenticationForm()
+	return render(request,"Notes/home.html",{"form":form})
 
 def notes(request):
 	
@@ -31,7 +32,7 @@ def notesyrbranch(request ,year, branch):
 
 	
 def books(request):
-	return render(request,'Notes/book.html')
+	return render(request,'Notes/bookyearwise.html')
 
 def Notes_form(request):
 	if request.method == "POST":
@@ -72,3 +73,6 @@ def logout_account(request):
 	return redirect('home')
 
 
+def booksyrbranch(request, year, branch):
+	books_cs_details = Pdfbooks.objects.filter(branch=branch).filter(year=year).order_by('subject')
+	return render(request,'Notes/books.html/',{'books_cs_details':books_cs_details,'year':year,'branch':branch})

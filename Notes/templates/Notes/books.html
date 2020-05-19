@@ -1,10 +1,9 @@
-
 {% extends "Notes/base.html" %}
 {% load static %}
 
 {% block content %}
-<div class="text-center m-2 text-danger"><H1 class="m-4"><strong>I think it’s a new feature. <br>
- Don’t tell anyone it was an accident.</strong></H1>
+<div class="text-center m-2 text-danger"><H1 class="m-4"><strong> Spend Less, Read More
+ </strong></H1>
 </div>
 <div class="container card ">
 	<h3 class="text-center text-primary mt-3"> No worry when GCS is here!!
@@ -15,26 +14,26 @@
 	<br>
 	
 
-	{% for notes in notes_cs_details %}
+	{% for books in books_cs_details %}
 	<div class="jumbotron">
 	<br>
-	<h5>SUBJECT : {{ notes.subject }}</h5>
+	<h5>SUBJECT : {{ books.subject }}</h5>
 	
 	<br>
-<h5>Teacher : {{ notes.teacher }}</h5>
+<h5>Author : {{ books.author }}</h5>
 	
 	<br>
 
 	
 
-	<h5> Date of Upload : {{ notes.Date_of_upload }}</h5>
+	<h5> Published Year : {{ books.published_year }}</h5>
 	
 	<br>
-	<h5><a href="{{ notes.data.url }}">Have a  look <i class="fa fa-link"></i></a></h5> 
+	<h5><a href="{{ books.data.url }}">Have a  look <i class="fa fa-link"></i></a></h5> 
 </div>
 <hr>
 	{% endfor %}
-</div
+</div>
 </div>
 
 {% endblock content %}

@@ -1,8 +1,13 @@
+.topic{
+  height: 200px;
+  
+}
 .notes, .books{
 	height:400;
 	width:450;
 
 }
+
 .YearWise{
 	height: 200px;
 	align-items: center;

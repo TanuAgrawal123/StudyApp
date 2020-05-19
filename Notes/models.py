@@ -93,6 +93,8 @@ class Pdfbooks(models.Model):
         choices=Branch_choice,
         default=0,)
 	subject=models.CharField(max_length=50)
+	year=models.IntegerField(choices=year_choice, default=1)
+	branch=models.CharField( max_length=20, choices=Branch_choice, default='BTECH COMMON')
 	author=models.CharField(max_length=50)
 	published_year=models.IntegerField(null=True)
 	pdf=models.FileField(upload_to="#")

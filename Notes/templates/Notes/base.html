@@ -33,14 +33,14 @@
         background-size: cover;
         background-position: center;
         background-attachment: fixed;
-        height: 500;
+        height: 600;
     }
 </style>	
 	</head>
 	<body>
     <body data-spy="scroll" data-target="#navScrollspy">
     	<nav class="navbar bg-primary navbar-dark navbar-expand-md ">
-    		<a href="#" class="navbar-brand"><i class="fa fa-user-graduate" aria-hidden="true"></i>GOD FOR COLLEGE STUDENT(GCS)</a>
+    		<a href="#" class="navbar-brand"><i class="fa fa-user-graduate"></i>GOD FOR COLLEGE STUDENT(GCS)</a>
     		<button type="button" class="navbar-toggler navbar-toggler-right" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -74,13 +74,13 @@
 
 {% if user.is_authenticated %}
         <li class="nav-item">
-          <a href="#" class=" nav text-white">Welcome {{user.username}}!</a>  
+          <a href="#" class="nav-link text-white">Welcome {{user.username}}!</a>  
         </li>
         <li>
 
         <form class="form-inline nav-item" action="{% url 'logout' %}" method="POST">
           {% csrf_token %}
-          <button type="submit" class="btn btn-info">Log out</button>
+          <button type="submit" class="btn btn-success ml-2">Log out</button>
         </form>
     </li>
         {% else %}

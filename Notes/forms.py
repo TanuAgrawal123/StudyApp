@@ -11,9 +11,6 @@ class ContributionNoteForm(forms.ModelForm):
 		fields=['year', 'branch', 'subject', 'teacher', 'data']
 
 
-branch_choice=[
-('CSE','CSE'),
-('IT','IT')]
 
 class SignUpForm(UserCreationForm):
 	Name=forms.CharField(max_length=50)
