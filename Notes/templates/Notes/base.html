@@ -28,7 +28,7 @@
 <link rel="stylesheet" type="text/css" href="{% static 'Notes/css/style.css' %}">
         
 	<style>
-.jumbotron{
+.jumbo{
         background-image:url({% static 'Notes/images/background.jpg' %});
         background-size: cover;
         background-position: center;
@@ -71,14 +71,32 @@
     			<li class="nav-item">
     				<a href="{% url 'Notes_form' %}" class="nav-link">Want To Contribute</a>
     			</li>
-    			<li class="nav-item">
-    				<button class="bg-danger float-right mx-3"> <a href="{% url 'signup' %}" class="nav-link">Signup</a></button>
-    			</li>
+
+{% if user.is_authenticated %}
+        <li class="nav-item">
+          <a href="#" class=" nav text-white">Welcome {{user.username}}!</a>  
+        </li>
+        <li>
+
+        <form class="form-inline nav-item" action="{% url 'logout' %}" method="POST">
+          {% csrf_token %}
+          <button type="submit" class="btn btn-info">Log out</button>
+        </form>
+    </li>
+        {% else %}
+        
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'signup' %}">Sign up</a>
+        </li>
+        {% endif %}
+
+
+   
+    		
     			</ul>
     		</div></nav>
 
-<div>
-</div>
+
 
        {% block content %}
        {% endblock %}

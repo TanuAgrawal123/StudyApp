@@ -1,10 +1,25 @@
 from django.shortcuts import render, redirect
-from .models import Notes, Teacher, Student
+from .models import Notes, Teacher ,Student
 from .forms import ContributionNoteForm, SignUpForm
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.forms import  AuthenticationForm
 
     
 def home(request, ):
-	return render(request, 'Notes/home.html')
+	if request.method == 'POST':
+		form = AuthenticationForm(request=request, data=request.POST)
+		if form.is_valid():
+			username = form.cleaned_data.get('username')
+			password = form.cleaned_data.get('password')
+			user = authenticate(username=username, password=password)
+			if user is not None:
+				login(request, user)
+				
+				return redirect('home')
+			
+	else:
+		form = AuthenticationForm()
+		return render(request,"Notes/home.html",{"form":form})
 
 def notes(request):
 	
@@ -33,12 +48,27 @@ def Notes_form(request):
 		return render(request, 'Notes/contributionform.html', {'form': form})
 
 def signup(request):
-	if request.method=="POST":
-		form = SignUpForm(request.POST)
-		if form.is_valid():
-			user = form.save()
-			user.save()
-			return redirect('home')
+	form = SignUpForm(request.POST)
+	if form.is_valid():
+
+		user = form.save()
+		user.refresh_from_db()
+		user.student.Name = form.cleaned_data.get('Name')
+		user.student.Year = form.cleaned_data.get('Year')
+		user.student.Email = form.cleaned_data.get('Email')
+		user.student.Branch=form.cleaned_data.get('Branch')
+		user.save()
+		username = form.cleaned_data.get('username')
+		password = form.cleaned_data.get('password1')
+		user = authenticate(username=username, password=password)
+		login(request,user)
+		return redirect('home')
 	else:
 		form = SignUpForm()
 		return render(request, 'Notes/signup.html', {'form': form})
+
+def logout_account(request):
+	logout(request)
+	return redirect('home')
+
+

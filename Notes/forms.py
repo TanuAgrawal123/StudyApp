@@ -11,8 +11,17 @@ class ContributionNoteForm(forms.ModelForm):
 		fields=['year', 'branch', 'subject', 'teacher', 'data']
 
 
+branch_choice=[
+('CSE','CSE'),
+('IT','IT')]
 
-class SignUpForm(forms.ModelForm):
+class SignUpForm(UserCreationForm):
+	Name=forms.CharField(max_length=50)
+	Branch=forms.CharField()
+	Email=forms.EmailField(max_length=50)
+	Year=forms.IntegerField()
+
 	class Meta:
-		model=Student
-		fields=['Name', 'Year','Branch', 'Email']
+		model=User
+		fields=('username','Name', 'Year','Branch', 'Email','password1','password2',)
+		

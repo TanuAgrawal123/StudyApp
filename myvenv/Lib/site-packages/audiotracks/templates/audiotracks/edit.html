@@ -1,0 +1,85 @@
+{% extends "audiotracks/base.html" %}
+{% load i18n %}
+
+{% block body %}
+{% if user.is_authenticated %}
+<div class="audiotracks-form">
+  <form class="form-stacked" method="POST" enctype="multipart/form-data" 
+    action="{% url 'edit_track' track.id %}">
+    {% csrf_token %}
+    <fieldset>
+      <legend>{% trans 'Edit track' %}</legend>
+      {{ form.non_field_errors }}
+      <div class="audiotracks-edit-row">
+        {{ form.audio_file.errors }}
+        <label class="top" for="id_audio_file">{{ form.audio_file.label }}</label>
+        {{ form.audio_file }}
+        <span class="audiotracks-edit-current-data">{{ track_filename }}</span>
+      </div>
+      <div class="audiotracks-edit-row">
+        {{ form.image.errors }}
+        <label class="top" for="id_image">{{ form.image.label }}</label>
+        {{ form.image }}
+        {% if track.image %}
+          <img src="{{ track.image.url_48x48 }}" alt="Track image">
+          <input type="checkbox" name="delete_image" value="1"
+          id="delete_image">
+          <label id="audiotracks-delete-image-label" for="delete_image">{% trans 'Delete image' %}</label>
+        {% endif %}
+      </div>
+      <div class="audiotracks-edit-row">
+        <div class="audiotracks-edit-half-row">
+          {{ form.title.errors }}
+          <label for="id_title">{{ form.title.label }}</label>
+          {{ form.title }}
+        </div>
+        <div class="audiotracks-edit-half-row">
+          {{ form.artist.errors }}
+          <label for="id_artist">{{ form.artist.label }}</label>
+          {{ form.artist }}
+        </div>
+      </div>
+      <div class="audiotracks-edit-row">
+        <div class="audiotracks-edit-half-row">
+          {{ form.genre.errors }}
+          <label for="id_genre">{{ form.genre.label }}</label>
+          {{ form.genre }}
+        </div>
+        <div class="audiotracks-edit-half-row">
+          {{ form.date.errors }}
+          <label for="id_date">{{ form.date.label }}</label>
+          {{ form.date }}
+        </div>
+      </div>
+      <div class="audiotracks-edit-row">
+        {{ form.tags.errors }}
+        <label for="id_tags">{{ form.tags.label }}</label>
+        {{ form.tags }}
+      </div>
+      <div class="audiotracks-edit-row">
+        {{ form.description.errors }}
+        <label class="top" for="id_description">{{ form.description.label }}</label>
+        {{ form.description }}
+      </div>
+      <div id="slug" class="audiotracks-edit-row">
+        {{ form.slug.errors }}
+        <label for="id_slug">{{ form.slug.label }}</label>
+        <div class="input-prepend">
+          <span class="audiotracks-edit-current-data add-on">{{ track_url_prefix }}</span>{{ form.slug }}
+        </div>
+      </div>
+      <p id="save-button">
+      <button class="btn btn-primary">{% trans 'Save your changes' %}</button>
+      </p>
+    </fieldset>
+  </form>
+</div>
+<div class="audiotracks-form" id="delete-form">
+  <form action="{% url 'confirm_delete_track' track.id %}">
+    <p id="delete-button">
+    <button class="btn btn-danger">{% trans 'Delete this track' %}</button>
+    </p>
+  </form>
+</div>
+{% endif %}
+{% endblock %}

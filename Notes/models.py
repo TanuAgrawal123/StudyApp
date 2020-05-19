@@ -16,7 +16,7 @@ Branch_choice = [
     ('ME', 'ME'),
     ('CE', 'CE'),
     ('CH', 'CH'),
-    ('NOBRANCH', 'NOBRANCH'),
+    ('BTECH COMMON', 'BTECH COMMON'),
 
     
 ]
@@ -27,15 +27,20 @@ year_choice=[
 
 
 class Student(models.Model):
+	user=models.OneToOneField(User,on_delete=models.CASCADE)
 	Name=models.CharField(max_length=50,null=True)
 	Year=models.IntegerField(default=1)
-	Branch=models.CharField(max_length=50)
+	Branch=models.CharField( max_length=20, choices=Branch_choice, default='BTECH COMMON')
 	Email=models.EmailField(null=True)
 
 	def __str__(self):
-		return self.Name
-	
+		return self.user.username
 
+@receiver(post_save,sender=User)
+def update_profile_signal(sender, instance, created, **kwargs):
+	if created:
+		Student.objects.create(user=instance)
+	instance.student.save()
 
 
 class Teacher(models.Model):
@@ -48,6 +53,7 @@ class Teacher(models.Model):
 
 
 class Notes(models.Model):
+	
 	subject=models.CharField(max_length=50)
 	teacher=models.ForeignKey(Teacher, on_delete=models.CASCADE)
 	data=models.FileField(upload_to="document/")
@@ -59,6 +65,14 @@ class Notes(models.Model):
 	year=models.IntegerField(choices=year_choice, default=1,)
 	upvote=models.IntegerField(default=0)
 	downvote=models.IntegerField(default=0)
+
+
+
+
+
+
+
+
 	
 
 class Papers(models.Model):

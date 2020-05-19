@@ -1,0 +1,23 @@
+{% if page.paginator.num_pages > 1 %}
+<div class="pagination">
+  <ul>
+    {% if page.has_previous %}
+    <li>
+    <a href="{{ base_path }}/{{ page.previous_page_number }}">&larr;</a>
+    </li>
+    {% endif %}
+
+    {% for page_number in page.paginator.page_range %}
+    <li {% if page.number == page_number %}class="active"{% endif %}>
+      <a href="{{ base_path }}/{{ page_number }}">{{ page_number }}</a>
+    </li>
+    {% endfor %}
+
+    {% if page.has_next %}
+    <li>
+    <a href="{{ base_path }}/{{ page.next_page_number }}">&rarr;</a>
+    </li>
+    {% endif %}
+  </ul>
+</div>
+{% endif %}

@@ -1,0 +1,166 @@
+# French localization for django-audiotracks
+# Copyright (C) 2011 Alex Marandon
+# This file is distributed under the same license as the django-audiotracks package.
+# Alex Marandon <contact@alexmarandon.com>, 2011
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 0.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-05-12 11:35+0200\n"
+"PO-Revision-Date: 2011-04-24 13:37+007\n"
+"Last-Translator: Alex Marandon <contact@alexmarandon.com>\n"
+"Language-Team: Alex Marandon <contact@alexmarandon.com>\n"
+"Language: French\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n>1;\n"
+
+#: feeds.py:23
+#, python-format
+msgid "%s Podcast"
+msgstr "Podcast %s"
+
+#: feeds.py:26
+#, python-format
+msgid "All audio tracks posted on %s"
+msgstr "Toutes les pistes audio postées sur %s"
+
+#: feeds.py:35
+#, python-format
+msgid "\"%(title)s\" posted by %(username)s"
+msgstr "« %(title)s » posté par %(username)s"
+
+#: feeds.py:44
+#, python-format
+msgid "Image for \"%s\""
+msgstr "Image pour « %s »"
+
+#: feeds.py:76
+#, python-format
+msgid "Podcast by %(username)s on %(site_name)s"
+msgstr "Podcast de %(username)s sur %(site_name)s"
+
+#: feeds.py:82
+#, python-format
+msgid "Audio tracks posted on %(site_name)s by %(username)s"
+msgstr "Pistes audio sur %(site_name)s par %(username)s"
+
+#: models.py:50
+msgid "Audio file"
+msgstr "Fichier audio"
+
+#: models.py:51
+msgid "Image"
+msgstr ""
+
+#: models.py:53
+msgid "Title"
+msgstr "Titre"
+
+#: models.py:54
+msgid "Artist"
+msgstr "Artiste"
+
+#: models.py:55
+msgid "Genre"
+msgstr ""
+
+#: models.py:56
+#, fuzzy
+msgid "Date"
+msgstr "Date"
+
+#: models.py:57
+msgid "Description"
+msgstr ""
+
+#: models.py:58
+msgid "Slug (last part of the url)"
+msgstr "Slug (dernière partie de l'URL)"
+
+#: views.py:134
+msgid "Your changes have been saved."
+msgstr "Vous changements ont été enregistrés"
+
+#: views.py:170
+#, python-format
+msgid "\"%s\" has been deleted."
+msgstr "« %s » a été supprimé."
+
+#: templates/audiotracks/_list_actions.html:2
+#: templates/audiotracks/detail.html:35
+msgid "Edit"
+msgstr "Éditer"
+
+#: templates/audiotracks/_list_actions.html:3
+#: templates/audiotracks/detail.html:36
+msgid "Delete"
+msgstr "Supprimer"
+
+#: templates/audiotracks/base.html:23
+msgid "Latest tracks"
+msgstr "Derniers morceaux"
+
+#: templates/audiotracks/base.html:24
+msgid "Your tracks"
+msgstr "Vos morceaux"
+
+#: templates/audiotracks/base.html:25
+msgid "Upload track"
+msgstr "Poster un morceau"
+
+#: templates/audiotracks/confirm_delete.html:8
+#, python-format
+msgid "Are you sure you want to delete \"%(title)s\"? This can't be undone."
+msgstr "Êtes-vous certain de vouloir supprimer définitivement « %(title)s » ?"
+
+#: templates/audiotracks/confirm_delete.html:14
+msgid "Yes, delete this track"
+msgstr "Oui, supprimer définitivement ce morceau !"
+
+#: templates/audiotracks/detail.html:31
+msgid "Download Track"
+msgstr "Télécharger ce morceau"
+
+#: templates/audiotracks/edit.html:11
+msgid "Edit track"
+msgstr "Édition du morceau"
+
+#: templates/audiotracks/edit.html:27
+msgid "Delete image"
+msgstr "Supprimer l'image"
+
+#: templates/audiotracks/edit.html:72
+msgid "Save your changes"
+msgstr "Enregistrer vos changements"
+
+#: templates/audiotracks/edit.html:80
+msgid "Delete this track"
+msgstr "Supprimer ce morceau"
+
+#: templates/audiotracks/latest.html:5
+msgid "Latest Tracks"
+msgstr "Derniers Morceaux"
+
+#: templates/audiotracks/new.html:10
+msgid "Upload a new track"
+msgstr "Poster un nouveau morceau"
+
+#: templates/audiotracks/new.html:14
+msgid "Upload"
+msgstr "Envoyer"
+
+#: templates/audiotracks/user_index.html:6
+#, python-format
+msgid "Tracks from %(username)s"
+msgstr "Morceaux de %(username)s"
+
+#: templates/audiotracks/user_index.html:13
+#, python-format
+msgid "last modified %(last_modified)s ago"
+msgstr "modifié il y a %(last_modified)s"
+
+#~ msgid "Your Tracks"
+#~ msgstr "Vos morceaux"

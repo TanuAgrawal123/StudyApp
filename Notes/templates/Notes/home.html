@@ -2,17 +2,9 @@
 {% load static %}
 
 {% block content %}
-<style>
-.jumbotron{
-        background-image:url({% static 'Notes/images/background.jpg' %});
-        
-        background-position: center;
-        background-attachment: fixed;
-        height: 540;
-    }
-</style>
 
-<section id="section-top" class="jumbotron jumbotron-fluid text-white  align-items-center ">
+
+<section id="section-top" class=" jumbo jumbotron jumbotron-fluid text-white  align-items-center ">
 <div class="container text-center">
 	<mark>
 	<div class="text-center text-white mt-5 h1"><b><i>GOD FOR COLLEGE STUDENTS</i></b></div></mark>
@@ -21,7 +13,8 @@
 
  <div class="container">
  	<div class="row align-item-center">
- 		<div class=" card col-lg-3 float-left m-3">
+        <div class="col-lg-9 float-left">
+ 		<div class=" card col-lg-3 float-left m-2">
  			<div class="card-body align-item-center">
  				<h1 class="text-primary">
 
@@ -32,17 +25,17 @@
  				</p>
 </div>
  			</div>
- 			<div class=" card col-lg-3 float-left m-3">
+ 			<div class=" card col-lg-3 float-left m-2">
  			<div class="card-body align-item-center">
  				<h1 class="text-primary">
  					<a href="#">
  				Exam Paper</a></h1>
 
  				<p class="text-danger">Dont Take Tension<br>
- 				When Exam Paers are Here</p> 				
+ 				When Exam Papers are Here</p> 				
 </div>
  			</div>
- 			<div class=" card col-lg-3 float-left m-3 ">
+ 			<div class=" card col-lg-3 float-left m-2 ">
  			<div class="card-body align-item-center">
  				<h1 class="text-primary">
  					<a href="#">
@@ -52,6 +45,21 @@
 </div>
  			</div>
  		</div>
+        {% if not user.is_authenticated %}
+        <div class="col-lg-3 float-left">
+             <h1 class="mb-3 text-center">Please log in</h1>
+             <form method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+            <button  class="btn btn-primary" type="submit">Login</button>
+        </form>
+        Don't have an account? <a href="{'url' 'signup'}" target="blank"><strong>register here</strong></a>!
+    </div>
+        </div>
+        {% endif %}
  	</div>
+ 	
+</div>
+
 {% endblock content %}
 
