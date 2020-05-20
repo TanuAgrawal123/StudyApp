@@ -2,5 +2,42 @@
 {% load static %}
 
 {% block content %}
-<h1> Working on it</h1>
+<div class="text-center m-2 text-danger"><H2 class="m-4"><strong> The mediocre teacher tells. The good teacher explains.<br> The superior teacher demonstrates. The great teacher inspires.
+
+
+
+
+ </strong></H2>
+</div>
+<div class="container card ">
+	<h3 class="text-center text-primary mt-3"> No worry when GCS is here!!
+	<h4 class="text-center text-success"> {{branch}} Facult List</h4>
+	
+	
+	<br>
+	<br>
+	
+
+	{% for faculty in facultydetails %}
+	<div class="jumbotron">
+	<br>
+	<h5>Name : {{ faculty.Name }}</h5>
+	
+	<br>
+<h6>Mobile No : {{ faculty.Mobile }}</h6>
+	
+	<br>
+
+	
+
+	<h6> EMAIL ID : {{ faculty.Email}}</h5>
+	
+	<br>
+</div>
+<hr>
+	{% endfor %}
+</div>
+</div>
+
+
 {% endblock content %}

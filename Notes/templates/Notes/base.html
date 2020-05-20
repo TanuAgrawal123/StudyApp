@@ -28,6 +28,9 @@
 <link rel="stylesheet" type="text/css" href="{% static 'Notes/css/style.css' %}">
         
 	<style>
+		html,body{
+    height: 100%
+}
 .jumbo{
         background-image:url({% static 'Notes/images/background.jpg' %});
         background-size: cover;
@@ -60,11 +63,30 @@
     			<li class="nav-item">
     				<a href="{% url 'papers' %}" class="nav-link">Exam Papers</a>
     			</li>
-    			<li class="nav-item">
-    				<a href="#" class="nav-link">Faculty List</a>
+    			<li class="nav-item dropdown">
+    				
+			<span class="nav-link">Faculty List</span>
+			<div class="dropdown-item">
+				<a href="{% url 'facultylist' branch='CSE' %}">CSE</a>
+				<br>
+				<a href="{% url 'facultylist' branch='IT' %}">IT</a>
+				<br>
+				<a href="{% url 'facultylist' branch='ECE' %}">ECE</a>
+				<br>
+				<a href="{% url 'facultylist' branch='EE' %}">EE</a>
+				<br>
+				<a href="{% url 'facultylist' branch='ME' %}">ME</a>
+				<br>
+				<a href="{% url 'facultylist' branch='CH' %}">CH</a>
+				<br>
+				<a href="{% url 'facultylist' branch='CE' %}">CE</a>
+				<br>
+				
+				</div>
     			</li>
+
     			<li class="nav-item">
-    				<a href="#" class="nav-link">Announcements</a>
+    				<a href="{% url 'announcement' %}" class="nav-link">Announcements</a>
     			</li>
     			<li class="nav-item dropdown">
     				
@@ -108,7 +130,7 @@
        {% block content %}
        {% endblock %}
    
-   <footer class="bg-light">
+   <footer class=" bg-light">
 					
 						<div class="continer">
 							<div class="row ml-2">
@@ -120,8 +142,8 @@
 								<div class="col-12 col-sm-6 col-lg-3">
 							<h6>Quick links</h6>
 							<ul class="list-unstyled">
-								<li><a href="#">Home</a></li>
-								<li><a href="#">Want to Contribute</a></li>
+								<li><a href="{% url 'home' %}">Home</a></li>
+								<li><a href="{% url 'signup' %}">Signup To contribute</a></li>
 								
 							</ul></div>
 							

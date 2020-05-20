@@ -13,7 +13,10 @@ urlpatterns = [
     path('Booksform/', views.Books_form, name='Books_form'),
     path('Papersform/', views.Papers_form, name='Papers_form'),
     path('papers/',views.papers, name='papers'),
-    path('papers/<int:year>/<str:branch>', views.papersyrbranch, name='papersyrbranch')
+    path('papers/<int:year>/<str:branch>', views.papersyrbranch, name='papersyrbranch'),
+    path('faculty_list/<str:branch>', views.facultylist, name='facultylist'),
+    path('announcement', views.announcement, name='announcement'),
+    
 
 
 

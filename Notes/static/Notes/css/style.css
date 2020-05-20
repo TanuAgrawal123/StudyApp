@@ -1,6 +1,12 @@
+html,body{
+    height: 100%
+}
 .topic{
   height: 200px;
   
+}
+.announcement{
+  height: 300px;
 }
 .notes, .books{
 	height:300;

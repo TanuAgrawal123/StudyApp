@@ -45,7 +45,7 @@ def update_profile_signal(sender, instance, created, **kwargs):
 
 class Teacher(models.Model):
 	Name=models.CharField(max_length=50)
-	Department=models.CharField(max_length=50)
+	Department=models.CharField( max_length=20, choices=Branch_choice)
 	Mobile=models.BigIntegerField()
 	Email=models.EmailField(null=True)
 	def __str__(self):

@@ -115,3 +115,9 @@ def papersyrbranch(request, year, branch):
 	papers_cs_details = Papers.objects.filter(branch=branch).filter(year=year).order_by('Type_of_upload').order_by('subject')
 	return render(request,'Notes/papers.html/',{'papers_cs_details':papers_cs_details,'year':year,'branch':branch})
 
+def facultylist(request, branch):
+	facultydetails = Teacher.objects.filter(Department=branch)
+	return render(request,'Notes/faculty_list.html/',{'facultydetails':facultydetails,'branch':branch})
+
+def announcement(request):
+	return render(request, 'Notes/announcements.html')
