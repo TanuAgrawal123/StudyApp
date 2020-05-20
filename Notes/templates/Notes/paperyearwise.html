@@ -1,0 +1,104 @@
+
+
+{% extends "Notes/base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="container p-5 align-item-center">
+<div class="row align-items-center">
+<div class="col-12 col-lg-6 align-items-center">
+<img class="books img-rounded" src="{% static 'Notes/images/paper.jpg' %}" alt="cannot upload">
+</div>
+<div class="col-12 col-lg-6 align-items-center text-center">
+
+<h1 class= "text-warning" >Worries About Exam?</h1>
+<h3 class="text-primary">No issue!!!</h3>
+<h3 class="text-primary">Providing you Last Years Papers<br>
+To Boost up your preperation</h3>
+
+
+
+</div>
+</div>
+</div>
+
+	
+<div class="YearWise container align-items-center">
+     <span class="btn bt-primary text-light bg-primary float-left m-5"><a class="text-light" href="{% url 'papersyrbranch' year=1 branch='NOBRANCH' %}">First Year</a></span>
+<div class="dropdown">
+			<span class="btn bt-primary text-light bg-primary float-left m-5">Second Year</span>
+			<div class="dropdown-item">
+				<a href="{% url 'papersyrbranch' year=2 branch='CSE' %}">CSE</a>
+				<br>
+				<a href="{% url 'papersyrbranch' year=2 branch='IT' %}" >IT</a>
+				<br>
+				<a href="{% url 'papersyrbranch' year=2 branch='EC' %}" >EC</a>
+				<br>
+				<a href="{% url 'papersyrbranch' year=2 branch='EE' %}" >EE</a>
+				<br>
+				<a href="{% url 'papersyrbranch' year=2 branch='ME' %}" >ME</a>
+				<br>
+				<a href="{% url 'papersyrbranch' year=2 branch='CE' %}" >CE</a>
+				<br>
+				<a href="{% url 'papersyrbranch' year=2 branch='CH' %}" >CH</a>
+				<br>
+			
+
+			</div>
+</div>
+
+			
+			
+		
+<div class="dropdown">
+			<span class="btn bt-primary text-light bg-primary float-left m-5">Third Year</span>
+			<div class="dropdown-item">
+				<a href="{% url 'papersyrbranch' year='3' branch='CSE' %}">CSE</a>
+				<br>
+				<a href="{% url 'papersyrbranch' year=3 branch='IT' %}" >IT</a>
+				<br>
+				<a href="{% url 'papersyrbranch' year=3 branch='EC' %}" >EC</a>
+				<br>
+				<a href="{% url 'papersyrbranch' year=3 branch='EE' %}" >EE</a>
+				<br>
+				<a href="{% url 'papersyrbranch' year=3 branch='ME' %}" >ME</a>
+				<br>
+				<a href="{% url 'papersyrbranch' year=3 branch='CE' %}" >CE</a>
+				<br>
+				<a href="{% url 'papersyrbranch' year=3 branch='CH' %}" >CH</a>
+				<br>
+			
+
+			
+
+			</div>
+</div>
+
+			
+<div class="dropdown">
+			
+      <span class="btn bt-primary text-light bg-primary float-left m-5">Final Year</span>
+			<div class="dropdown-item">
+				<a href="{% url 'papersyrbranch' year=4 branch='CSE' %}">CSE</a>
+				<br>
+				<a href="{% url 'papersyrbranch' year=4 branch='IT' %}" >IT</a>
+				<br>
+				<a href="{% url 'papersyrbranch' year=4 branch='EC' %}" >EC</a>
+				<br>
+				<a href="{% url 'papersyrbranch' year=4 branch='EE' %}" >EE</a>
+				<br>
+				<a href="{% url 'papersyrbranch' year=4 branch='ME' %}" >ME</a>
+				<br>
+				<a href="{% url 'papersyrbranch' year=4 branch='CE' %}" >CE</a>
+				<br>
+				<a href="{% url 'papersyrbranch' year=4 branch='CH' %}" >CH</a>
+				<br>
+			
+
+			</div>
+</div>
+</div>
+
+	</div>		
+{% endblock content %}

@@ -21,4 +21,13 @@ class SignUpForm(UserCreationForm):
 	class Meta:
 		model=User
 		fields=('username','Name', 'Year','Branch', 'Email','password1','password2',)
-		
+
+class ContributionBookForm(forms.ModelForm):
+	class Meta:
+		model=Pdfbooks
+		fields=['year', 'branch', 'subject', 'author', 'published_year','pdf']
+
+class ContributionPaperForm(forms.ModelForm):
+	class Meta:
+		model=Papers
+		fields=['year', 'branch', 'subject', 'Date_of_upload','Type_of_paper','data']

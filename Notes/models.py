@@ -80,24 +80,21 @@ class Papers(models.Model):
 	branch=models.CharField(
         max_length=10,
         choices=Branch_choice,
-        default=0,
-    )
-	data=models.FileField(upload_to="")
+        default=0,)
+	year=models.IntegerField(choices=year_choice, default=1)
+	data=models.FileField(upload_to="document/")
 	Date_of_upload=models.DateTimeField(default=timezone.now)
-	batch=models.IntegerField(choices=year_choice, default=1,)
+	
 	Type_of_paper=models.CharField(max_length=10, choices=[('1','EndSem'), ('2','ClassTest')], default='EndSem')
 
 class Pdfbooks(models.Model):
-	branch=models.CharField(
-        max_length=10,
-        choices=Branch_choice,
-        default=0,)
+	
 	subject=models.CharField(max_length=50)
 	year=models.IntegerField(choices=year_choice, default=1)
 	branch=models.CharField( max_length=20, choices=Branch_choice, default='BTECH COMMON')
 	author=models.CharField(max_length=50)
 	published_year=models.IntegerField(null=True)
-	pdf=models.FileField(upload_to="#")
+	pdf=models.FileField(upload_to="document/")
 
 
 	

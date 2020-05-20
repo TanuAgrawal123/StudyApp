@@ -1,0 +1,43 @@
+{% extends "Notes/base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="text-center m-2 text-danger"><H2 class="m-4"><strong> When you do exams you never want to be the one who finishes first<br> and you never want to be the one who finishes last.     
+
+
+
+
+ </strong></H2>
+</div>
+<div class="container card ">
+	<h3 class="text-center text-primary mt-3"> No worry when GCS is here!!
+	<h4 class="text-center text-success"> {{branch}}</h4>
+	<h4 class="text-center text-success">{{year}}</h4>
+	
+	<br>
+	<br>
+	
+
+	{% for papers in papers_cs_details %}
+	<div class="jumbotron">
+	<br>
+	<h5>SUBJECT : {{ papers.subject }}</h5>
+	
+	<br>
+<h5>TYPE OF PAPER : {{ papers.Type_of_paper }}</h5>
+	
+	<br>
+
+	
+
+	<h5> DATE OF UPLOAD : {{ papers.Date_of_upload }}</h5>
+	
+	<br>
+	<h5><a href="{{ papers.data.url }}">Have a  look <i class="fa fa-link"></i></a></h5> 
+</div>
+<hr>
+	{% endfor %}
+</div>
+</div>
+
+{% endblock content %}

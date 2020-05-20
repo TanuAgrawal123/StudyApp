@@ -50,9 +50,7 @@
     			<li class="nav-item">
     				<a href="{% url 'home' %}" class="nav-link">Home</a>
     			</li>
-    			<li class="nav-item">
-    				<a href="#" class="nav-link">About</a>
-    			</li>
+    			
     			<li class="nav-item">
     				<a href="{% url 'notes' %}" class="nav-link">Notes</a>
     			</li>
@@ -60,7 +58,7 @@
     				<a href="{% url 'books' %}" class="nav-link">Books PDF</a>
     			</li>
     			<li class="nav-item">
-    				<a href="#" class="nav-link">Exam Papers</a>
+    				<a href="{% url 'papers' %}" class="nav-link">Exam Papers</a>
     			</li>
     			<li class="nav-item">
     				<a href="#" class="nav-link">Faculty List</a>
@@ -68,8 +66,17 @@
     			<li class="nav-item">
     				<a href="#" class="nav-link">Announcements</a>
     			</li>
-    			<li class="nav-item">
-    				<a href="{% url 'Notes_form' %}" class="nav-link">Want To Contribute</a>
+    			<li class="nav-item dropdown">
+    				
+			<span class="nav-link">Want To Contribute</span>
+			<div class="dropdown-item">
+				<a href="{% url 'Notes_form' %}">Notes</a>
+				<br>
+				<a href="{% url 'Books_form' %}">Books</a>
+				<br>
+				<a href="{% url 'Papers_form' %}">Exam Papers</a>
+				<br>
+				</div>
     			</li>
 
 {% if user.is_authenticated %}
