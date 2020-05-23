@@ -22,10 +22,11 @@ Branch_choice = [
 ]
 
 year_choice=[
-(1,1),(2,2),(3,3),(4,4),
+('1st','1st'),('2nd','2nd'),('3rd','3rd'),('Final','Final'),
 ]
 
-
+year_stu_choice=[
+(1,1),(2,2),(3,3),(4,4)]
 class Student(models.Model):
 	user=models.OneToOneField(User,on_delete=models.CASCADE)
 	Name=models.CharField(max_length=50,null=True)
@@ -62,7 +63,7 @@ class Notes(models.Model):
         max_length=10,
         choices=Branch_choice,
         default=0,)
-	year=models.IntegerField(choices=year_choice, default=1,)
+	year=models.CharField(choices=year_choice ,max_length=10,default='1st')
 	upvote=models.IntegerField(default=0)
 	downvote=models.IntegerField(default=0)
 
@@ -81,16 +82,17 @@ class Papers(models.Model):
         max_length=10,
         choices=Branch_choice,
         default=0,)
-	year=models.IntegerField(choices=year_choice, default=1)
+	year=models.CharField(choices=year_choice,max_length=10,default='1st')
 	data=models.FileField(upload_to="document/")
 	Date_of_upload=models.DateTimeField(default=timezone.now)
 	
-	Type_of_paper=models.CharField(max_length=10, choices=[('1','EndSem'), ('2','ClassTest')], default='EndSem')
+	Type_of_paper=models.CharField(max_length=10, choices=[('EndSem','EndSem'), ('ClassTest','ClassTest')], default='EndSem')
 
+	
 class Pdfbooks(models.Model):
 	
 	subject=models.CharField(max_length=50)
-	year=models.IntegerField(choices=year_choice, default=1)
+	year=models.CharField(choices=year_choice,max_length=10,default='1st')
 	branch=models.CharField( max_length=20, choices=Branch_choice, default='BTECH COMMON')
 	author=models.CharField(max_length=50)
 	published_year=models.IntegerField(null=True)
