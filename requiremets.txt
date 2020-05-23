@@ -1,8 +1,0 @@
-Django==2.2.12
-django-audiotracks==0.2.4
-django-crispy-forms==1.9.1
-djangorestframework==3.11.0
-mutagenx==1.22
-Pillow==7.1.2
-pytz==2020.1
-sqlparse==0.3.1
