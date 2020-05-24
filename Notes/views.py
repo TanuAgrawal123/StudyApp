@@ -3,6 +3,7 @@ from .models import Notes, Teacher ,Student, Pdfbooks, Papers
 from .forms import ContributionNoteForm, SignUpForm, ContributionBookForm, ContributionPaperForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import  AuthenticationForm
+from django.contrib import messages
 
 
     
@@ -18,7 +19,7 @@ def home(request, ):
 
 				
 				return redirect('home')
-
+		
 			
 	form = AuthenticationForm()
 	return render(request,"Notes/home.html",{"form":form})

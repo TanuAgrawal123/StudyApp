@@ -10,13 +10,27 @@ class ContributionNoteForm(forms.ModelForm):
 		model=Notes
 		fields=['year', 'branch', 'subject', 'teacher', 'data']
 
+Branch_choice = [
+    ('CSE', 'CSE'),
+    ('IT', 'IT'),
+    ('EE', 'EE'),
+    ('ECE', 'ECE'),
+    ('ME', 'ME'),
+    ('CE', 'CE'),
+    ('CH', 'CH'),
+    ('BTECH COMMON', 'BTECH COMMON'),
 
+    
+]
 
+year_choice=[
+('1st','1st'),('2nd','2nd'),('3rd','3rd'),('Final','Final'),
+]
 class SignUpForm(UserCreationForm):
 	Name=forms.CharField(max_length=50)
-	Branch=forms.CharField()
+	Branch=forms.ChoiceField(choices=Branch_choice)
 	Email=forms.EmailField(max_length=50)
-	Year=forms.IntegerField()
+	Year=forms.ChoiceField(choices=year_choice)
 
 	class Meta:
 		model=User
