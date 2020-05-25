@@ -10,23 +10,18 @@
 
 
 
-<link rel="stylesheet" type="text/css" href="{% static 'Notes/css/style.css' %}">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    
+
     <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.7.0/js/bootstrap.min.js"></script>
 
 
-
-
-
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
 <link rel="stylesheet" type="text/css" href="{% static 'Notes/css/style.css' %}">
-        
+
+
 	<style>
 		html,body{
     height: 100%
@@ -38,22 +33,20 @@
         background-attachment: fixed;
         height: 600;
     }
-</style>	
+</style>
 	</head>
 	<body>
-    <body data-spy="scroll" data-target="#navScrollspy">
+
     	<nav class="navbar bg-primary navbar-dark navbar-expand-md ">
     		<a href="#" class="navbar-brand"><i class="fa fa-user-graduate"></i>GOD FOR COLLEGE STUDENT(GCS)</a>
-    		<button type="button" class="navbar-toggler navbar-toggler-right" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-    		<div class="collapse navbar-collapse" id="
-    		navbarNav">
-    		<ul class="navbar-nav" id="navScrollspy">
+    		<button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+    		<ul class="navbar-nav">
     			<li class="nav-item">
     				<a href="{% url 'home' %}" class="nav-link">Home</a>
     			</li>
-    			
+
     			<li class="nav-item">
     				<a href="{% url 'notes' %}" class="nav-link">Notes</a>
     			</li>
@@ -63,47 +56,55 @@
     			<li class="nav-item">
     				<a href="{% url 'papers' %}" class="nav-link">Exam Papers</a>
     			</li>
-    			<li class="nav-item dropdown">
-    				
-			<span class="nav-link">Faculty List</span>
-			<div class="dropdown-item">
-				<a href="{% url 'facultylist' branch='CSE' %}">CSE</a>
+    			<li class="nav-item dropdown dropdown-sm">
+            <a href="#0" class="nav-link dropdown-toggle" id="blogDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button">Faculty List</a>
+            <div class="dropdown-item" aria-labelledby="blogDropdown">
+
+				<a  href="{% url 'facultylist' branch='CSE' %}" >CSE</a>
 				<br>
-				<a href="{% url 'facultylist' branch='IT' %}">IT</a>
+
+				<a  href="{% url 'facultylist' branch='IT' %}" >IT</a>
 				<br>
-				<a href="{% url 'facultylist' branch='ECE' %}">ECE</a>
+
+
+				<a  href="{% url 'facultylist' branch='ECE' %}">ECE</a>
 				<br>
-				<a href="{% url 'facultylist' branch='EE' %}">EE</a>
+
+				<a  href="{% url 'facultylist' branch='EE' %}">EE</a>
 				<br>
-				<a href="{% url 'facultylist' branch='ME' %}">ME</a>
+
+				<a  href="{% url 'facultylist' branch='ME' %}">ME</a>
 				<br>
-				<a href="{% url 'facultylist' branch='CH' %}">CH</a>
+
+				<a  href="{% url 'facultylist' branch='CH' %}">CH</a>
 				<br>
-				<a href="{% url 'facultylist' branch='CE' %}">CE</a>
-				<br>
-				
+
+				<a  href="{% url 'facultylist' branch='CE' %}">CE</a>
+
+
+
 				</div>
     			</li>
 
     			<li class="nav-item">
     				<a href="{% url 'announcement' %}" class="nav-link">Announcements</a>
     			</li>
-    			<li class="nav-item dropdown">
-    				
-			<span class="nav-link">Want To Contribute</span>
-			<div class="dropdown-item">
+    			<li class="nav-item dropdown dropdown-sm">
+            <a href="#0" class="nav-link dropdown-toggle" id="blogDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button">Want To Contribute</a>
+            <div class="dropdown-item" aria-labelledby="blogDropdown">
+
 				<a href="{% url 'Notes_form' %}">Notes</a>
 				<br>
 				<a href="{% url 'Books_form' %}">Books</a>
 				<br>
-				<a href="{% url 'Papers_form' %}">Exam Papers</a>
-				<br>
+				<a  href="{% url 'Papers_form' %}">Exam Papers</a>
+
 				</div>
     			</li>
 
 {% if user.is_authenticated %}
         <li class="nav-item">
-          <a href="#" class="nav-link text-white">Welcome {{user.username}}!</a>  
+          <a href="#" class="nav-link text-white">Welcome {{user.username}}!</a>
         </li>
         <li>
 
@@ -113,15 +114,15 @@
         </form>
     </li>
         {% else %}
-        
+
         <li class="nav-item">
           <a class="nav-link" href="{% url 'signup' %}">Sign up</a>
         </li>
         {% endif %}
 
 
-   
-    		
+
+
     			</ul>
     		</div></nav>
 
@@ -129,14 +130,14 @@
 
        {% block content %}
        {% endblock %}
-   
+
    <footer class=" bg-light">
-					
+
 						<div class="continer">
 							<div class="row ml-2">
                              <div class="col-12 col-sm-6 col-lg-3">
 					         <h6>About Us</h6>
-					         Hello We are Here to provide all the study material of our college. 
+					         Hello We are Here to provide all the study material of our college.
 					     </div>
 
 								<div class="col-12 col-sm-6 col-lg-3">
@@ -144,21 +145,21 @@
 							<ul class="list-unstyled">
 								<li><a href="{% url 'home' %}">Home</a></li>
 								<li><a href="{% url 'signup' %}">Signup To contribute</a></li>
-								
+
 							</ul></div>
-							
-							
+
+
 							<div class="col-12 col-sm-6 col-lg-3">
                              <h6>Follow us</h6>
 
                              <ul class="list-unstyled">
 								<li><a href=""><i class="fa fa-facebook fa-fw" aria-hidden="true"></i>Facebook</a></li>
-								
+
 								<li><a href="#"><i class="fa fa-twitter fa-fw" aria-hidden="true"></i>Twitter</a></li>
-								
+
 								<li><a href="#"><i class="fa fa-linkedin fa-fw" aria-hidden="true"></i>Linkedin</a></li>
 							</ul>
-						
+
 					</div>
 					<div class="col-12 col-sm-6 col-lg-3">
 						<h6>Our location:</h6>
@@ -179,5 +180,11 @@
 							<li class="list-inline-item"><a href="#" data-toggle="modal" data-target="#modal">Terms of use and privacy policy</a></li>
 						</ul></div>
 						</div></div></div></div></footer>
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    </body>
+</html>
+
 	</body>
 	</html>
