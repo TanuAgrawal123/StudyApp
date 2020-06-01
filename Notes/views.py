@@ -4,8 +4,8 @@ from .forms import ContributionNoteForm, SignUpForm, ContributionBookForm, Contr
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import  AuthenticationForm
 from django.contrib import messages
-
-
+from django.shortcuts import get_object_or_404
+from django.db.models import F
     
 def home(request, ):
 	if request.method == 'POST':
@@ -30,9 +30,42 @@ def notes(request):
 
 def notesyrbranch(request ,year, branch):
 	notes_cs_details = Notes.objects.filter(branch=branch).filter(year=year).order_by('subject')
+
 	return render(request,'Notes/notes.html/',{'notes_cs_details':notes_cs_details,'year':year,'branch':branch})
 
+
+def likes_notes(request, year, branch):
 	
+	notes=get_object_or_404(Notes, id=request.POST.get('notes_id'))
+	
+
+	if request.user in notes.disliked.all():
+		print("H")
+
+
+		notes.disliked.remove(request.user)
+		notes.liked.add(request.user)
+	else:
+		notes.liked.add(request.user)
+	
+	return redirect('notesyrbranch' ,year, branch)
+
+def dislikes_notes(request, year, branch):
+	
+	notes=get_object_or_404(Notes, id=request.POST.get('notes_id'))
+	print("hjjj")
+
+	if request.user in notes.liked.all():
+		print("H")
+
+
+		notes.liked.remove(request.user)
+		notes.disliked.add(request.user)
+	else:
+		notes.disliked.add(request.user)
+	
+	return redirect('notesyrbranch' ,year, branch)
+		
 def books(request):
 	return render(request,'Notes/bookyearwise.html')
 
@@ -79,6 +112,36 @@ def booksyrbranch(request, year, branch):
 	books_cs_details = Pdfbooks.objects.filter(branch=branch).filter(year=year).order_by('subject')
 	return render(request,'Notes/books.html/',{'books_cs_details':books_cs_details,'year':year,'branch':branch})
 
+def likes_books(request, year, branch):
+	
+	books=get_object_or_404(Pdfbooks, id=request.POST.get('books_id'))
+	
+
+	if request.user in books.disliked.all():
+		
+
+		books.disliked.remove(request.user)
+		books.liked.add(request.user)
+	else:
+		books.liked.add(request.user)
+	
+	return redirect('booksyrbranch' ,year, branch)
+
+def dislikes_books(request, year, branch):
+	
+	books=get_object_or_404(Pdfbooks, id=request.POST.get('books_id'))
+	
+
+	if request.user in books.liked.all():
+		
+
+		books.liked.remove(request.user)
+		books.disliked.add(request.user)
+	else:
+		books.disliked.add(request.user)
+	
+	return redirect('booksyrbranch' ,year, branch)
+		
 
 def Books_form(request):
 	if request.method == "POST":
@@ -120,5 +183,35 @@ def facultylist(request, branch):
 	facultydetails = Teacher.objects.filter(Department=branch)
 	return render(request,'Notes/faculty_list.html/',{'facultydetails':facultydetails,'branch':branch})
 
+def likes_papers(request, year, branch):
+	
+	papers=get_object_or_404(Papers, id=request.POST.get('papers_id'))
+	
+
+	if request.user in papers.disliked.all():
+		
+
+		papers.disliked.remove(request.user)
+		papers.liked.add(request.user)
+	else:
+		papers.liked.add(request.user)
+	
+	return redirect('papersyrbranch' ,year, branch)
+
+def dislikes_papers(request, year, branch):
+	
+	papers=get_object_or_404(Papers, id=request.POST.get('papers_id'))
+	
+
+	if request.user in papers.liked.all():
+		
+
+		papers.liked.remove(request.user)
+		papers.disliked.add(request.user)
+	else:
+		papers.disliked.add(request.user)
+	
+	return redirect('papersyrbranch' ,year, branch)
+		
 def announcement(request):
 	return render(request, 'Notes/announcements.html')

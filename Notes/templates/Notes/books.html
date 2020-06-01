@@ -15,6 +15,7 @@
 	
 
 	{% for books in books_cs_details %}
+	{% if books.num_likes > books.num_dislikes|add:books.num_dislikes %}
 	<div class="jumbotron">
 	<br>
 	<h5>SUBJECT : {{ books.subject }}</h5>
@@ -30,9 +31,22 @@
 	
 	<br>
 	<h5><a href="{{ books.data.url }}">Have a  look <i class="fa fa-link"></i></a></h5> 
+
+	<form action="{% url 'likes_books' year branch  %}" method="POST">
+		{% csrf_token %}
+	<button type="submit" class="btn btn-primary mr-1 float-left" name="books_id" value="{{books.id}}">UpVote</button>
+</form>
+	<form action="{% url 'dislikes_books' year branch  %}" method="POST">
+		{% csrf_token %}
+	<button type="submit" class="btn btn-danger " name="books_id" value="{{books.id}}">DownVote</button>
+</form>
+	<p>{{books.num_likes}}&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    {{books.num_dislikes}} </p>
+
 </div>
 <hr>
+{% endif %}
 	{% endfor %}
+
 </div>
 </div>
 

@@ -16,6 +16,8 @@
 	
 
 	{% for notes in notes_cs_details %}
+
+	{% if notes.num_likes > notes.num_dislikes|add:notes.num_dislikes %}
 	<div class="jumbotron">
 	<br>
 	<h5>SUBJECT : {{ notes.subject }}</h5>
@@ -31,10 +33,21 @@
 	
 	<br>
 	<h5><a href="{{ notes.data.url }}">Have a  look <i class="fa fa-link"></i></a></h5> 
+	<form action="{% url 'likes_notes' year branch  %}" method="POST">
+		{% csrf_token %}
+	<button type="submit" class="btn btn-primary mr-1 float-left" name="notes_id" value="{{notes.id}}">UpVote</button>
+</form>
+	<form action="{% url 'dislikes_notes' year branch  %}" method="POST">
+		{% csrf_token %}
+	<button type="submit" class="btn btn-danger " name="notes_id" value="{{notes.id}}">DownVote</button>
+</form>
+	<p>{{notes.num_likes}}&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    {{notes.num_dislikes}} </p>
 </div>
 <hr>
+{% endif %}
 	{% endfor %}
-</div
+
+</div>
 </div>
 
 {% endblock content %}
