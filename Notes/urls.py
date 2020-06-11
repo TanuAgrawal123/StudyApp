@@ -8,7 +8,7 @@ urlpatterns = [
     path('books/', views.books, name='books'),
     path('bokes/<str:year>/<str:branch>', views.booksyrbranch, name='booksyrbranch'),
     path('Notesform/', views.Notes_form, name='Notes_form'),
-    path('signup/',views.signup, name='signup'),
+    path('signupstudent/',views.StudentSignupView.as_view(), name='signup'),
     path('logout/', views.logout_account, name='logout'),
     path('Booksform/', views.Books_form, name='Books_form'),
     path('Papersform/', views.Papers_form, name='Papers_form'),
@@ -22,6 +22,7 @@ urlpatterns = [
     path('papers/<str:year>/<str:branch>/likes/',views.likes_papers, name='likes_papers'),
     path('books/<str:year>/<str:branch>/dislikes/', views.dislikes_books,name='dislikes_books'),
     path('books/<str:year>/<str:branch>/likes/',views.likes_books, name='likes_books'),
+     path('signupfaculty/',views.TeacherSignupView.as_view(), name='signupteacher'),
 
 
 

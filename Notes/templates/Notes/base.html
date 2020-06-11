@@ -114,10 +114,21 @@
         </form>
     </li>
         {% else %}
+        
+    			<li class="nav-item dropdown dropdown-sm">
+            <a href="#0" class="nav-link dropdown-toggle" id="blogDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button">SignUp</a>
+            <div class="dropdown-item" aria-labelledby="blogDropdown">
 
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'signup' %}">Sign up</a>
-        </li>
+				<a href="{% url 'signup' %}">As a Student</a>
+				<br>
+				<a href="{% url 'signupteacher' %}">As a Teacher</a>
+				<br>
+				</div>
+    			</li>
+   
+
+
+        
         {% endif %}
 
 

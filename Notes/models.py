@@ -2,12 +2,10 @@ from django.db import models
 
 from django.conf import settings
 from django.utils import timezone
-from django.contrib.auth.models import User
-from django.db.models.signals import post_save
-from django.dispatch import receiver
-from django.contrib.contenttypes.fields import GenericForeignKey
-from django.contrib.contenttypes.models import ContentType
-from django.contrib.contenttypes.fields import GenericRelation
+from django.contrib.auth.models import AbstractUser
+
+
+
 
 Branch_choice = [
     ('CSE', 'CSE'),
@@ -25,34 +23,46 @@ Branch_choice = [
 year_choice=[
 ('1st','1st'),('2nd','2nd'),('3rd','3rd'),('Final','Final'),
 ]
+choice=[('student','student'),('teacher','teacher')]
+
+class User(AbstractUser):
+	
+	is_student=models.BooleanField(default=False)
+	is_teacher=models.BooleanField(default=False)
+	
 
 
 class Student(models.Model):
-	user=models.OneToOneField(User,on_delete=models.CASCADE)
-	Name=models.CharField(max_length=50,null=True)
+	Name=models.CharField(max_length=50)
+	Email=models.EmailField(null=True)
+	
+	
+	user=models.OneToOneField(User, on_delete=models.CASCADE, related_name='user_student',primary_key=True)
 	Year=models.CharField(choices=year_choice, max_length=10)
 	Branch=models.CharField( max_length=20, choices=Branch_choice, default='BTECH COMMON')
-	Email=models.EmailField(null=True)
+	
 	liked=models.ManyToManyField(User, related_name='topic_liked')
-
 
 	def __str__(self):
 		return self.user.username
 
-@receiver(post_save,sender=User)
-def update_profile_signal(sender, instance, created, **kwargs):
-	if created:
-		Student.objects.create(user=instance)
-	instance.student.save()
 
+
+	
 
 class Teacher(models.Model):
-	Name=models.CharField(max_length=50)
-	Department=models.CharField( max_length=20, choices=Branch_choice)
-	Mobile=models.BigIntegerField()
+	user=models.OneToOneField(User,on_delete=models.CASCADE, primary_key=True)
+	Name=models.CharField(max_length=50, null=True)
 	Email=models.EmailField(null=True)
+	Department=models.CharField( max_length=20, choices=Branch_choice)
+	Mobile=models.CharField(max_length=20)
+
 	def __str__(self):
-		return self.Name
+		return self.user.username
+	
+
+
+	
 
 
 class Notes(models.Model):

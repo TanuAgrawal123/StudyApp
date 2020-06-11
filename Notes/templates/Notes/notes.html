@@ -17,7 +17,7 @@
 
 	{% for notes in notes_cs_details %}
 
-	{% if notes.num_likes > notes.num_dislikes|add:notes.num_dislikes %}
+	{% if notes.num_likes > notes.num_dislikes|add:notes.num_dislikes or  notes.num_dislikes < 1 %}
 	<div class="jumbotron">
 	<br>
 	<h5>SUBJECT : {{ notes.subject }}</h5>

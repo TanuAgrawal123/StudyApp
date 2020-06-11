@@ -1,7 +1,9 @@
 from django import forms
-from .models import Notes, Pdfbooks, Papers, Student
+from .models import Notes, Pdfbooks, Papers, Student ,Teacher, User
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.models import User
+
+from django.contrib.auth.forms import UserCreationForm
+from django.db import transaction
 
 
 
@@ -23,18 +25,67 @@ Branch_choice = [
     
 ]
 
+
 year_choice=[
 ('1st','1st'),('2nd','2nd'),('3rd','3rd'),('Final','Final'),
 ]
+
+
 class SignUpForm(UserCreationForm):
 	Name=forms.CharField(max_length=50)
+	Email=forms.EmailField()
+	Year=forms.ChoiceField(choices=year_choice, )
 	Branch=forms.ChoiceField(choices=Branch_choice)
-	Email=forms.EmailField(max_length=50)
-	Year=forms.ChoiceField(choices=year_choice)
 
-	class Meta:
-		model=User
-		fields=('username','Name', 'Year','Branch', 'Email','password1','password2',)
+
+	
+	class Meta(UserCreationForm.Meta):
+		model=	User
+
+
+	@transaction.atomic
+	def save(self):
+		user = super().save(commit=False)
+		user.is_student = True
+		user.save()
+		student = Student.objects.create(user=user)
+		student.Year=self.cleaned_data.get('Year')
+		student.Branch=self.cleaned_data.get('Branch')
+		student.Name=self.cleaned_data.get('Name')
+		student.Email=self.cleaned_data.get('Email')
+		student.save()
+		return user
+		
+class SignUpFormFaculty(UserCreationForm):
+	Name=forms.CharField(max_length=50)
+	Email=forms.EmailField()
+	Mobile=forms.CharField(required=True)
+	Department=forms.ChoiceField(choices=Branch_choice)
+
+	
+	class Meta(UserCreationForm.Meta):
+		model=	User
+
+
+	@transaction.atomic
+	def save(self):
+		print("start")
+		user = super().save(commit=False)
+		
+		user.is_teacher = True
+		user.save()
+		print("sufff")
+		teacher = Teacher.objects.create(user=user)
+		print("done")
+		teacher.Mobile=self.cleaned_data.get('Mobile')
+		teacher.Department=self.cleaned_data.get('Department')
+		teacher.Email=self.cleaned_data.get('Email')
+		teacher.Name=self.cleaned_data.get('Name')
+
+		
+		teacher.save()
+		return user
+
 
 class ContributionBookForm(forms.ModelForm):
 	class Meta:

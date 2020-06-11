@@ -1,11 +1,14 @@
 from django.shortcuts import render, redirect
-from .models import Notes, Teacher ,Student, Pdfbooks, Papers
-from .forms import ContributionNoteForm, SignUpForm, ContributionBookForm, ContributionPaperForm
+from .models import Notes, Teacher ,Student, Pdfbooks, Papers, User
+from .forms import ContributionNoteForm, SignUpForm, ContributionBookForm,SignUpFormFaculty, ContributionPaperForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import  AuthenticationForm
 from django.contrib import messages
 from django.shortcuts import get_object_or_404
 from django.db.models import F
+from django.dispatch import receiver
+from django.db.models.signals import post_save
+from django.views.generic import CreateView
     
 def home(request, ):
 	if request.method == 'POST':
@@ -53,10 +56,10 @@ def likes_notes(request, year, branch):
 def dislikes_notes(request, year, branch):
 	
 	notes=get_object_or_404(Notes, id=request.POST.get('notes_id'))
-	print("hjjj")
+	
 
 	if request.user in notes.liked.all():
-		print("H")
+		
 
 
 		notes.liked.remove(request.user)
@@ -83,25 +86,33 @@ def Notes_form(request):
 		form = ContributionNoteForm()
 		return render(request, 'Notes/contributionform.html', {'form': form})
 
-def signup(request):
-	form = SignUpForm(request.POST)
-	if form.is_valid():
+class StudentSignupView(CreateView):
+	model=User
+	form_class=SignUpForm
+	template_name='Notes/signup.html'
 
-		user = form.save()
-		user.refresh_from_db()
-		user.student.Name = form.cleaned_data.get('Name')
-		user.student.Year = form.cleaned_data.get('Year')
-		user.student.Email = form.cleaned_data.get('Email')
-		user.student.Branch=form.cleaned_data.get('Branch')
-		user.save()
-		username = form.cleaned_data.get('username')
-		password = form.cleaned_data.get('password1')
-		user = authenticate(username=username, password=password)
-		login(request,user)
+	
+	def form_valid(self,form):
+		user=form.save()
+		login(self.request,user)
 		return redirect('home')
-	else:
-		form = SignUpForm()
-		return render(request, 'Notes/signup.html', {'form': form})
+
+
+
+
+
+class TeacherSignupView(CreateView):
+	model=User
+	form_class=SignUpFormFaculty
+	template_name='Notes/signupteacher.html'
+
+	
+	def form_valid(self,form):
+		user=form.save()
+		login(self.request,user)
+		return redirect('home')
+
+
 
 def logout_account(request):
 	logout(request)

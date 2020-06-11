@@ -25,9 +25,8 @@ SECRET_KEY = '3naf#$&xbz65)wns2*jf2_t03b=)=82+rb^y@ut)buz*g7$&(y'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost','.pythonanywhere.com']
-
-
+ALLOWED_HOSTS = ['localhost','.pythonanywhere.com','127.0.0.1']
+AUTH_USER_MODEL='Notes.User'
 # Application definition
 
 INSTALLED_APPS = [
@@ -42,6 +41,7 @@ INSTALLED_APPS = [
     'crispy_forms',
 ]
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
