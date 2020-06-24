@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
-from .models import Notes, Teacher ,Student, Pdfbooks, Papers, User
-from .forms import ContributionNoteForm, SignUpForm, ContributionBookForm,SignUpFormFaculty, ContributionPaperForm
+from .models import Notes, Teacher ,Student, Pdfbooks, Papers, User, Answer, Post
+from .forms import ContributionNoteForm, SignUpForm, ContributionBookForm,SignUpFormFaculty,AnswerForm, ContributionPaperForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import  AuthenticationForm
 from django.contrib import messages
@@ -9,7 +9,9 @@ from django.db.models import F
 from django.dispatch import receiver
 from django.db.models.signals import post_save
 from django.views.generic import CreateView
-    
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.utils import timezone
+
 def home(request, ):
 	if request.method == 'POST':
 		form = AuthenticationForm(request=request, data=request.POST)
@@ -226,3 +228,110 @@ def dislikes_papers(request, year, branch):
 		
 def announcement(request):
 	return render(request, 'Notes/announcements.html')
+
+
+def post_list(request):
+    posts_list = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
+   
+    paginator = Paginator(posts_list,3,allow_empty_first_page=False)
+    page=request.GET.get('page',1)
+    posts=paginator.page(page)
+
+    return render(request, 'Notes/discussion_list.html', {'posts': posts })
+
+def post_detail(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    if request.method == "POST":
+            form = AnswerForm(request.POST)
+            if form.is_valid():
+                answer = form.save(commit=False)
+                answer.user=request.user
+                answer.created_date=timezone.now()
+                answer.post = post
+                answer.save()
+                
+    else:
+        form = AnswerForm()
+
+
+    return render(request, 'Notes/discussion_detail.html', {'post':post,'form': form,})
+
+    
+
+def post_new(request):
+    if request.method == "POST":
+        form = PostForm(request.POST)
+        
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.author = request.user
+            post.published_date = timezone.now()
+            post.save()
+            form.save_m2m()
+            return redirect('discussion_detail', pk=post.pk)
+    else:
+        form = PostForm()
+    return render(request, 'Notes/discussion_edit.html', {'form': form})
+def post_edit(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    if request.method == "POST":
+        form = PostForm(request.POST, instance=post)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.author = request.user
+            post.published_date = timezone.now()
+            post.save()
+            return redirect('post_detail', pk=post.pk)
+    else:
+        form = PostForm(instance=post)
+    return render(request, 'Notes/discussion_edit.html', {'form': form})
+
+def add_answer_to_post(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    if request.method == "POST":
+        form = AnswerForm(request.POST)
+        if form.is_valid():
+            answer = form.save(commit=False)
+            print(request.user)
+            print("Hello")
+            answer.user=request.user
+            answer.created_date=timezone.now()
+            answer.post = post
+
+            answer.save()
+            return redirect('discussion_detail', pk=post.pk)
+    else:
+        form = AnswerForm()
+    return render(request, 'Notes/discussion_detail', {'form': form})
+
+
+def likes_answer(request, pk):
+	
+	answer=get_object_or_404(Answer, id=request.POST.get('answer_id'))
+	
+
+	if request.user in answer.disliked.all():
+		
+
+		answer.disliked.remove(request.user)
+		answer.liked.add(request.user)
+	else:
+		answer.liked.add(request.user)
+	
+	return redirect('disccusion_detail' ,pk)
+
+
+def dislikes_answer(request, pk):
+	
+	answer=get_object_or_404(Answer, id=request.POST.get('answer_id'))
+	
+
+	if request.user in answer.liked.all():
+		
+
+		answer.liked.remove(request.user)
+		answer.disliked.add(request.user)
+	else:
+		answer.disliked.add(request.user)
+	
+	return redirect('disccusion_detail' ,pk)

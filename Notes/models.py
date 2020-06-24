@@ -3,6 +3,7 @@ from django.db import models
 from django.conf import settings
 from django.utils import timezone
 from django.contrib.auth.models import AbstractUser
+from taggit.managers import TaggableManager
 
 
 
@@ -146,6 +147,53 @@ class Pdfbooks(models.Model):
 
 	def num_dislikes(self):
 		return self.disliked.count()
+class Post(models.Model):
+	user=models.ForeignKey(User, on_delete=models.CASCADE)
+	title=models.CharField(max_length=50)
+	description=models.TextField()
+	image=models.ImageField(upload_to='images/', default='static/ayurvedasite/images/no.png')
+	published_date=models.DateTimeField(default=timezone.now)
+	tags = TaggableManager()
+	#image=models.ImageField(upload_to='images/', default='static/Notes/images/no.png')
+
+	
+
+	def __str__(self):
+		return self.title
+
+
+class Answer(models.Model):
+	post=models.ForeignKey(Post,related_name='answers',on_delete=models.CASCADE)
+	user=models.ForeignKey(User, on_delete=models.CASCADE)
+	
+	text=models.TextField(max_length=500)
+	created_date = models.DateTimeField(default=timezone.now)
+	approved_answers=models.BooleanField(default=False)
+	liked=models.ManyToManyField(User,blank=True ,related_name='answerliked')
+	disliked=models.ManyToManyField(User, blank=True, related_name='answerdisliked')
+
+	@property
+	def num_likes(self):
+		return self.liked.all().count()
+
+	def num_dislikes(self):
+		return self.disliked.count()
+
+
+
+
+	def count(self):
+		return self.text.all().count()
+
+
+	def approve(self):
+		self.approved_answers=True
+		self.save()
+
+	def __str__(self):	
+
+		return self.text
+
 	
     
 
@@ -156,11 +204,7 @@ class Like(models.Model):
 	notes=models.ForeignKey(Notes,on_delete=models.CASCADE, related_name='notes_like')
 	pdf=models.ForeignKey(Pdfbooks,on_delete=models.CASCADE, related_name='pdf_like')
 	paper=models.ForeignKey(Papers, on_delete=models.CASCADE, related_name='papers_like')
-
-
-
-
-
+	answer=models.ForeignKey(Answer, on_delete=models.CASCADE, related_name='answer_like' ,null=True)
 
 
 
@@ -169,3 +213,13 @@ class Like(models.Model):
 
 
 	
+
+
+
+
+
+
+
+
+
+

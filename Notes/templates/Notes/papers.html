@@ -35,7 +35,7 @@
 	
 	<br>
 	<h5><a href="{{ papers.data.url }}">Have a  look <i class="fa fa-link"></i></a></h5> 
-
+{% if user.is_authenticated %}
 <form action="{% url 'likes_papers' year branch  %}" method="POST">
 		{% csrf_token %}
 	<button type="submit" class="btn btn-primary mr-1 float-left" name="papers_id" value="{{papers.id}}">UpVote</button>
@@ -44,7 +44,8 @@
 		{% csrf_token %}
 	<button type="submit" class="btn btn-danger " name="papers_id" value="{{papers.id}}">DownVote</button>
 </form>
-	<p>{{papers.num_likes}}&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    {{papers.num_dislikes}} </p>
+	<p><i class="fa fa-thumbs-up"></i> {{papers.num_likes}}&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    <i class="fa fa-thumbs-down"></i> {{papers.num_dislikes}} </p>
+	{% endif %}
 
 </div>
 <hr>

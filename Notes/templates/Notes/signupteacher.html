@@ -13,6 +13,7 @@
             
             
     <form class ="mb-3" method="POST" action="{% url 'signupteacher' %}" class="SignUp-form">
+      {% csrf_token %}
       <div class="row">
         
         

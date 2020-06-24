@@ -1,0 +1,106 @@
+{% extends 'Notes/base.html'  %}
+{% load static %}
+
+{% block content %}
+
+<div class="container my-3 my-sm-5">
+    <div class="row">
+        <div class="col-12">
+<article class="mb-3">
+    <header class="mb-2">
+        
+        <h3>{{ post.title }}</h3>
+        {% for tags in post.tags.all %}
+        <p class="badge badge-primary m-2 mb-3">{{tags}}</p>
+            {% endfor %}
+            <br>
+        <div><p>{{post.description}}</p></div>
+        {% if post.published_date %}
+            
+               <div class="small"><b>Posted On</b>: {{ post.published_date }}</div>
+        {% endif %}
+        <div class="small"><b>Posted By</b>: {{post.user.username}}</div>
+        {% if user.is_authenticated %}
+         <a class="btn btn-default" href="#"><i class="fa fa-pencil"></i></a>
+         {% endif %}
+        
+        
+        
+
+            
+        
+        </header>
+
+        <section id="main mb-3">
+            <br>
+            <p class="text-dark">{{ post.text|linebreaksbr }}</p>
+
+
+        </section>
+
+        <section id="comments" class="small">
+            
+            <h2>Answers</h2>
+             {% for answer in post.answers.all %}
+                 
+            <div class="media">
+                
+                <div class="media-body">
+                    <strong>{{ answer.user }}</strong><p>  (Posted on: {{ answer.created_date }})</p><p>{{ answer.text|linebreaks }}</p></div>
+                    </div>
+                    
+                    <br>
+                    {% if user.is_authenticated %}
+    
+                <form action="{% url 'likes_answer' post.pk  %}" method="POST">
+        {% csrf_token %}
+    <button type="submit" class=" mr-1 float-left" name="answer_id" value="{{answer.id}}"><i class="fa fa-thumbs-up"></i></button>
+</form>
+    <form action="{% url 'dislikes_answer' post.pk  %}" method="POST">
+        {% csrf_token %}
+    <button type="submit" class="" name="answer_id" value="{{answer.id}}"><i class="fa fa-thumbs-down" ></i></button>
+</form>
+
+<br>
+    <p>{{answer.num_likes}}&nbsp;    {{answer.num_dislikes}} </p>
+    {% endif %}
+    
+
+
+                
+                <hr>
+             {% empty %}
+             <p class="h4 text-danger">No Answers here yet:(</p>
+             {% endfor %}   
+                
+
+<div class="form-group">
+                   
+
+    <h3>Add your answer to help each other</h3>
+    {% if user.is_authenticated %}
+    <form method="POST"  class="post-form">{% csrf_token %}
+        {{ form.text }}
+        <br>
+        <a href="{% url 'add_answer_to_disccusion' pk=post.pk %}"><button type="submit" class="save btn btn-default m-2">Send</button></a>
+        {% else %}
+        <h5 class="text-danger"> Please Login to add your answer</h5>
+    {% endif %}
+
+
+
+
+            </form>
+        </div>
+            </section>
+          
+          
+
+
+        </article>
+
+    </div>
+</div>
+</div>
+<button class="btn btn-warning sm m-2"><a href="{%url 'discussion_list' %}">Back To Discussion</button>
+    {% endblock %}

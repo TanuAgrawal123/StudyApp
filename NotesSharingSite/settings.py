@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'Notes',
     'rest_framework',
     'crispy_forms',
+    'taggit',
 ]
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 

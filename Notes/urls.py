@@ -23,6 +23,14 @@ urlpatterns = [
     path('books/<str:year>/<str:branch>/dislikes/', views.dislikes_books,name='dislikes_books'),
     path('books/<str:year>/<str:branch>/likes/',views.likes_books, name='likes_books'),
      path('signupfaculty/',views.TeacherSignupView.as_view(), name='signupteacher'),
+    path('disccussionpanel', views.post_list, name='discussion_list'),
+path('disccusion/<int:pk>/', views.post_detail, name='disccusion_detail'),
+#path('disccusion/new', views.disccusion_new, name='disccusion_new'),
+
+#path('disccusion/<int:pk>/edit/', views.disccusion_edit, name='disccusion_edit'),
+path('disccusion/<int:pk>/answer/', views.post_detail, name='add_answer_to_disccusion'),
+path('answer/<int:pk>/likes',views.likes_answer, name='likes_answer'),
+    path('answer/<int:pk>/dislikes/', views.dislikes_answer,name='dislikes_answer'),
 
 
 

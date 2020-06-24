@@ -51,10 +51,10 @@
     				<a href="{% url 'notes' %}" class="nav-link">Notes</a>
     			</li>
     			<li class="nav-item">
-    				<a href="{% url 'books' %}" class="nav-link">Books PDF</a>
+    				<a href="{% url 'books' %}" class="nav-link">Books</a>
     			</li>
     			<li class="nav-item">
-    				<a href="{% url 'papers' %}" class="nav-link">Exam Papers</a>
+    				<a href="{% url 'papers' %}" class="nav-link">Papers</a>
     			</li>
     			<li class="nav-item dropdown dropdown-sm">
             <a href="#0" class="nav-link dropdown-toggle" id="blogDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button">Faculty List</a>
@@ -85,19 +85,22 @@
 
 				</div>
     			</li>
+    			<li class="nav-item">
+    				<a href="{% url 'discussion_list' %}" class="nav-link">Discussion</a>
+    			</li>
 
     			<li class="nav-item">
     				<a href="{% url 'announcement' %}" class="nav-link">Announcements</a>
     			</li>
     			<li class="nav-item dropdown dropdown-sm">
-            <a href="#0" class="nav-link dropdown-toggle" id="blogDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button">Want To Contribute</a>
+            <a href="#0" class="nav-link dropdown-toggle" id="blogDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button"> Contribution Panel</a>
             <div class="dropdown-item" aria-labelledby="blogDropdown">
 
 				<a href="{% url 'Notes_form' %}">Notes</a>
 				<br>
 				<a href="{% url 'Books_form' %}">Books</a>
 				<br>
-				<a  href="{% url 'Papers_form' %}">Exam Papers</a>
+				<a  href="{% url 'Papers_form' %}">Papers</a>
 
 				</div>
     			</li>

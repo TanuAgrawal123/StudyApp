@@ -1,5 +1,5 @@
 from django import forms
-from .models import Notes, Pdfbooks, Papers, Student ,Teacher, User
+from .models import Notes, Pdfbooks, Papers, Student ,Teacher, User, Answer, Post
 from django.contrib.auth.forms import UserCreationForm
 
 from django.contrib.auth.forms import UserCreationForm
@@ -96,3 +96,15 @@ class ContributionPaperForm(forms.ModelForm):
 	class Meta:
 		model=Papers
 		fields=['year', 'branch', 'subject', 'Date_of_upload','Type_of_paper','data']
+
+class PostForm(forms.ModelForm):
+	class Meta:
+		model=Post
+		fields=['title', 'image', 'description', 'tags']
+
+
+class AnswerForm(forms.ModelForm):
+	class Meta:
+		model=Answer
+		fields=[ 'text']
+

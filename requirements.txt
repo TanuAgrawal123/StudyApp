@@ -1,5 +1,5 @@
 dj-database-url==0.5.0
-Django==2.2.12
+Django==2.2.13
 django-audiotracks==0.2.4
 django-crispy-forms==1.9.1
 djangorestframework==3.11.0
@@ -9,4 +9,4 @@ Pillow==7.1.2
 psycopg2==2.8.5
 pytz==2020.1
 sqlparse==0.3.1
-
+django-taggit
