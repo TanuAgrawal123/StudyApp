@@ -1,4 +1,4 @@
 ## GCS A Study Site ##
 ### Based on Django Framework ###
 Link : 
-http://gcsstudyapp.pythonanywhere.com/
+http://http://gcsstudysite.pythonanywhere.com//
