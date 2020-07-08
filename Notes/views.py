@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Notes, Teacher ,Student, Pdfbooks, Papers, User, Answer, Post
-from .forms import ContributionNoteForm, SignUpForm, ContributionBookForm,SignUpFormFaculty,AnswerForm, ContributionPaperForm
+from .forms import ContributionNoteForm, SignUpForm, ContributionBookForm,SignUpFormFaculty, PostForm, AnswerForm, ContributionPaperForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import  AuthenticationForm
 from django.contrib import messages
@@ -11,10 +11,13 @@ from django.db.models.signals import post_save
 from django.views.generic import CreateView
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.utils import timezone
+from django.db.models import Q
+
 
 def home(request, ):
 	if request.method == 'POST':
 		form = AuthenticationForm(request=request, data=request.POST)
+		print(form)
 		if form.is_valid():
 			username = form.cleaned_data.get('username')
 			password = form.cleaned_data.get('password')
@@ -231,10 +234,21 @@ def announcement(request):
 
 
 def post_list(request):
-    posts_list = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
-   
-    paginator = Paginator(posts_list,3,allow_empty_first_page=False)
+    post_list = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
+    query = request.GET.get('q')
+    if query:
+    	que=list(query.split(" "))
+    	
+    	print(que)
+    	post_list = Post.objects.filter(
+            Q(tags__name__in=que)).distinct().order_by('published_date')
+    print(post_list)
+    if not post_list:
+    	return render(request,'Notes/discussion_list.html', {'posts':post_list})
+
+    paginator = Paginator(post_list,3,allow_empty_first_page=True)
     page=request.GET.get('page',1)
+    
     posts=paginator.page(page)
 
     return render(request, 'Notes/discussion_list.html', {'posts': posts })
@@ -260,18 +274,18 @@ def post_detail(request, pk):
 
 def post_new(request):
     if request.method == "POST":
-        form = PostForm(request.POST)
+        form = PostForm(request.POST, request.FILES)
         
         if form.is_valid():
             post = form.save(commit=False)
-            post.author = request.user
+            post.user= request.user
             post.published_date = timezone.now()
             post.save()
             form.save_m2m()
-            return redirect('discussion_detail', pk=post.pk)
+            return redirect('disccusion_detail', pk=post.pk)
     else:
         form = PostForm()
-    return render(request, 'Notes/discussion_edit.html', {'form': form})
+    return render(request, 'Notes/ask_doubt.html', {'form': form})
 def post_edit(request, pk):
     post = get_object_or_404(Post, pk=pk)
     if request.method == "POST":
@@ -335,3 +349,4 @@ def dislikes_answer(request, pk):
 		answer.disliked.add(request.user)
 	
 	return redirect('disccusion_detail' ,pk)
+

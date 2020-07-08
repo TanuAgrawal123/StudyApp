@@ -31,6 +31,7 @@ path('disccusion/<int:pk>/', views.post_detail, name='disccusion_detail'),
 path('disccusion/<int:pk>/answer/', views.post_detail, name='add_answer_to_disccusion'),
 path('answer/<int:pk>/likes',views.likes_answer, name='likes_answer'),
     path('answer/<int:pk>/dislikes/', views.dislikes_answer,name='dislikes_answer'),
+    path('disccusion/ask_doubt', views.post_new, name='ask_doubt'),
 
 
 

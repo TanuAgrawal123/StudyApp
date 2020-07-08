@@ -100,7 +100,7 @@ class ContributionPaperForm(forms.ModelForm):
 class PostForm(forms.ModelForm):
 	class Meta:
 		model=Post
-		fields=['title', 'image', 'description', 'tags']
+		fields=['title', 'image' ,'description', 'tags']
 
 
 class AnswerForm(forms.ModelForm):

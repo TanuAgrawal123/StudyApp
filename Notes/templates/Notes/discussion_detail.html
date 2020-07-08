@@ -15,6 +15,9 @@
             {% endfor %}
             <br>
         <div><p>{{post.description}}</p></div>
+        {% if post.image %}
+        <img src ="{{post.image.url}}" class="doubtimg" />
+        {% endif %}
         {% if post.published_date %}
             
                <div class="small"><b>Posted On</b>: {{ post.published_date }}</div>

@@ -3,19 +3,41 @@
 
 {% block content %}
 <div class="container">
-	<h4 class="float-right ml-2">
-		{% if user.is_authenticated %}
-            <a href="#" class="top-menu text-center"><i class="fa fa-plus"> Want to ask Doubt</i></span></a>
+    <div class="float-right">
+	
+              <form class="form-inline m-1 float-left" method="GET">
+                <input ttype="text"
+                  placeholder="Search..."
+                  class="form-control"
+                  id='id_q'
+                  name="q"
+                   class="form-control mr-sm-2" 
+                    araia-label="search">
+                <a href="{% url 'discussion_list' %}" >
+                  <i class="fa fa-search m-2"></i>
+                </a>
+            </form>
+            {% if user.is_authenticated %}
+            <div class="badge badge-warning m-1 float-left "><a href="{% url 'ask_doubt' %}" class="top-menu text-center"><i class="fa fa-plus">  Ask Doubt</i></span></a></div>
             {% endif %}
-     </h4>
+    </div>
+     
+
+
+
 
 
 <div class="row">
 	
 
+        
     <div class="col-12 ">
 
-
+{% if not posts %}
+<div class="emptyss text-center">
+    <h4 class="text-center mt-5"> No Disscussion:(</h4>
+</div>
+{% endif %}
 
             {% for post in posts %}
             <div class="card text-dark border-white shadow p-3 
@@ -40,6 +62,7 @@
                  <br>
                  <p class="car-subtitle small"><b>Posted By</b>: {{post.user.username}}</p>
                  <br>
+                 
              
                                  
             </div>
@@ -71,5 +94,6 @@
 </div>
 
 </div>
+
 </div>
 {% endblock %}

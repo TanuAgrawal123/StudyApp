@@ -147,11 +147,12 @@ class Pdfbooks(models.Model):
 
 	def num_dislikes(self):
 		return self.disliked.count()
+
 class Post(models.Model):
 	user=models.ForeignKey(User, on_delete=models.CASCADE)
 	title=models.CharField(max_length=50)
 	description=models.TextField()
-	image=models.ImageField(upload_to='images/', default='static/ayurvedasite/images/no.png')
+	image=models.ImageField(upload_to='images/', null=True,blank=True)
 	published_date=models.DateTimeField(default=timezone.now)
 	tags = TaggableManager()
 	#image=models.ImageField(upload_to='images/', default='static/Notes/images/no.png')
