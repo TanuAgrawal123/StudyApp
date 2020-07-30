@@ -20,14 +20,14 @@ html,body{
   
 }
 
+.responsive{
+  width: 100%;
+  height:auto;
+}
 .doubtimg{
   height:500px;
   width:122px;
  
-}
-.YearWise{
-	height: 200px;
-	align-items: center;
 }
 
 .dropdown {
@@ -53,9 +53,10 @@ cursor: pointer;
   display: block;
 }
 .Note_form{
-	margin-left: 100px;
+	
 }
 .signup{
   width: 500;
   }
+
   

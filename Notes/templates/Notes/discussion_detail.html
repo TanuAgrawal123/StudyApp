@@ -3,11 +3,8 @@
 
 {% block content %}
 
-<div class="container my-3 my-sm-5">
-    <div class="row">
-        <div class="col-12">
-<article class="mb-3">
-    <header class="mb-2">
+<div class="card">
+<div class="jumbotron bg-white">
         
         <h3>{{ post.title }}</h3>
         {% for tags in post.tags.all %}
@@ -16,23 +13,25 @@
             <br>
         <div><p>{{post.description}}</p></div>
         {% if post.image %}
-        <img src ="{{post.image.url}}" class="doubtimg" />
+        <img src ="{{post.image.url}}" class="responsive img-fluid" />
         {% endif %}
         {% if post.published_date %}
-            
-               <div class="small"><b>Posted On</b>: {{ post.published_date }}</div>
+        
+
+            <br><br>
+               <div class=""><b>Posted On</b>: {{ post.published_date }}</div>
         {% endif %}
-        <div class="small"><b>Posted By</b>: {{post.user.username}}</div>
+        <div class=""><b>Posted By</b>: {{post.user.username}}</div>
         {% if user.is_authenticated %}
          <a class="btn btn-default" href="#"><i class="fa fa-pencil"></i></a>
          {% endif %}
         
-        
+       </div> 
         
 
             
         
-        </header>
+        
 
         <section id="main mb-3">
             <br>
@@ -41,14 +40,15 @@
 
         </section>
 
-        <section id="comments" class="small">
+        <section id="comments" class="small p-3">
             
             <h2>Answers</h2>
              {% for answer in post.answers.all %}
                  
             <div class="media">
                 
-                <div class="media-body">
+                <div class="media-body mt-3">
+
                     <strong>{{ answer.user }}</strong><p>  (Posted on: {{ answer.created_date }})</p><p>{{ answer.text|linebreaks }}</p></div>
                     </div>
                     
@@ -73,21 +73,27 @@
                 
                 <hr>
              {% empty %}
-             <p class="h4 text-danger">No Answers here yet:(</p>
+             <p class="h4 text-danger">No Answers here yet &#128542;</p>
              {% endfor %}   
                 
+<br>
 
 <div class="form-group">
                    
 
-    <h3>Add your answer to help each other</h3>
+    <h3 class="text-primary">Add your answer to help each other</h3>
+    <br>
     {% if user.is_authenticated %}
     <form method="POST"  class="post-form">{% csrf_token %}
-        {{ form.text }}
+        <div class="form-group">
+            <label class="h5"> Add Your answer</label>
+            <br>
+            <textarea cols="100" rows='20' name="text" placeholder="Enter your answer......" required></textarea>
+        </div>
         <br>
         <a href="{% url 'add_answer_to_disccusion' pk=post.pk %}"><button type="submit" class="save btn btn-default m-2">Send</button></a>
         {% else %}
-        <h5 class="text-danger"> Please Login to add your answer</h5>
+        <h5 class="text-danger"> <a href="{% url 'home' %}">Please Login to add your answer</a></h5>
     {% endif %}
 
 
@@ -100,10 +106,10 @@
           
 
 
-        </article>
+        
+   
 
-    </div>
+<button class="btn btn-white bg-white m-2"><a href="{%url 'discussion_list' %}">Back To Discussion</a></button>
 </div>
-</div>
-<button class="btn btn-warning sm m-2"><a href="{%url 'discussion_list' %}">Back To Discussion</button>
     {% endblock %}
+    

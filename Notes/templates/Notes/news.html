@@ -1,0 +1,33 @@
+{% extends 'Notes/base.html'  %}
+{% load static %}
+{% block content %}
+    <div class="jumbotron">
+        <center><h1>Tech news</h1>
+        <br>
+           <a href="{% url 'news' %}" class="btn btn-danger">Refresh News</a>
+        
+    </center>
+   </div>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-12">
+                    
+                    {% for posts, links, authors, timezone, linkauthor in zipped_data %}
+                    <a href ="{{links}}"><h5> {{posts}} </h5></a>
+                    <br>
+                    <a class="text-info" href="{{linkauthor}}"><p>author: {{authors}}</p></a>
+                    
+                    <p class="small text-muted">{{timezone}}</p>
+
+                    <hr>
+
+                    {% endfor %}
+                    <br>
+            </div>
+            
+        </div>
+ 
+ 
+</div>
+
+    {% endblock %}

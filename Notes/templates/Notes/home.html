@@ -62,7 +62,9 @@
         {{form.as_p}}
             <button  class="btn btn-primary" type="submit">Login</button>
         </form>
-        Don't have an account? <a href="{'url' 'signup'}" target="blank"><strong><a href="{% url 'signup' %}" >Register here</strong></a>
+        Don't have an account? <a href="{url 'signup'}" target="blank"><strong><a href="{% url 'signup' %}" >Register here</strong></a>
+        <br>
+        <a href="#" target="blank">Forget Password</a>
         
         {% else %}
     

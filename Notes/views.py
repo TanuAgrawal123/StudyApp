@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Notes, Teacher ,Student, Pdfbooks, Papers, User, Answer, Post
+from .models import Notes, Teacher ,Student, Pdfbooks, Papers, User, Answer, Post, TechNews
 from .forms import ContributionNoteForm, SignUpForm, ContributionBookForm,SignUpFormFaculty, PostForm, AnswerForm, ContributionPaperForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import  AuthenticationForm
@@ -12,6 +12,9 @@ from django.views.generic import CreateView
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.utils import timezone
 from django.db.models import Q
+from django.http import HttpResponseRedirect
+import requests
+from bs4 import BeautifulSoup 
 
 
 def home(request, ):
@@ -78,18 +81,19 @@ def books(request):
 	return render(request,'Notes/bookyearwise.html')
 
 def Notes_form(request):
+	form = ContributionNoteForm()
 	if request.method == "POST":
 		
 		form = ContributionNoteForm(request.POST, request.FILES)
+		print(form)
 		if form.is_valid():
 			notes = form.save(commit=False)
 			notes.save()
 	
 			
-			return redirect('home')
-	else:
-		form = ContributionNoteForm()
-		return render(request, 'Notes/contributionform.html', {'form': form})
+			return render(request,'Notes/home.html')
+	teachers=Teacher.objects.all()
+	return render(request, 'Notes/contributionform.html', {'form': form, 'teachers': teachers})
 
 class StudentSignupView(CreateView):
 	model=User
@@ -301,19 +305,21 @@ def post_edit(request, pk):
     return render(request, 'Notes/discussion_edit.html', {'form': form})
 
 def add_answer_to_post(request, pk):
-    post = get_object_or_404(Post, pk=pk)
+    
     if request.method == "POST":
+
         form = AnswerForm(request.POST)
         if form.is_valid():
-            answer = form.save(commit=False)
+            answer = form.cleaned_data['text']
             print(request.user)
             print("Hello")
             answer.user=request.user
             answer.created_date=timezone.now()
+            ost = get_object_or_404(Post, pk=pk)
             answer.post = post
 
             answer.save()
-            return redirect('discussion_detail', pk=post.pk)
+            return HttpResponseRedirect('reverse("Notes.views.add_answer_to_post")')
     else:
         form = AnswerForm()
     return render(request, 'Notes/discussion_detail', {'form': form})
@@ -350,3 +356,38 @@ def dislikes_answer(request, pk):
 	
 	return redirect('disccusion_detail' ,pk)
 
+
+def news(request):
+	url="https://techcrunch.com/"
+	r=requests.get(url)
+	htmlcontent=r.content
+	soup=BeautifulSoup(htmlcontent, 'html.parser')
+	items=soup.find_all('h2')
+	context={}
+
+	post=soup.find_all("header",class_='post-block__header')
+	L=[]
+	anchor=[]
+	author=[]
+	time=[]
+	author_anchor=[]
+	j=0
+	print(post)
+	for i in post:
+		
+		L.append(i.find('a', class_='post-block__title__link').get_text().rstrip().strip())
+		anchor.append(i.find('a', class_='post-block__title__link').get("href"))
+		author.append(i.find('span', class_='river-byline__authors').get_text().rstrip())
+		time.append(i.find('time', class_='river-byline__time').get_text().rstrip())
+		s=i.find('span', class_='river-byline__authors')
+		author_anchor.append(s.find('a').get('href'))
+
+
+		
+		j+=1
+	zipped=zip(L, anchor, author, time, author_anchor)
+	context['zipped_data']=zipped
+		
+	return render(request, 'Notes/news.html',context)
+
+	

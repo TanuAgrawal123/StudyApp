@@ -5,12 +5,12 @@
 
 {% block content %}
 
-<div class="container p-5 align-item-center">
+<div class="container align-item-center mt-1">
 <div class="row align-items-center">
-<div class="col-12 col-lg-6 align-items-center">
-<img class="books img-rounded" src="{% static 'Notes/images/paper.jpg' %}" alt="cannot upload">
+<div class="col-sm-4 booksimg">
+<img class="m-2 responsive img-fluid img-rounded" src="{% static 'Notes/images/paper.jpg' %}" alt="cannot upload"/>
 </div>
-<div class="col-12 col-lg-6 align-items-center text-center">
+<div class="col-sm-8 align-items-center text-center p-5 ">
 
 <h1 class= "text-warning" >Worries About Exam?</h1>
 <h3 class="text-primary">No issue!!!</h3>
@@ -23,11 +23,14 @@ To Boost up your preperation</h3>
 </div>
 </div>
 
+<div class="row align-item-center">
 	
-<div class="YearWise container align-items-center">
-     <span class="btn bt-primary text-light bg-primary float-left m-5"><a class="text-light" href="{% url 'papersyrbranch' year='1st' branch='NOBRANCH' %}">First Year</a></span>
-<div class="dropdown">
-			<span class="btn bt-primary text-light bg-primary float-left m-5">Second Year</span>
+
+	<div class="col-sm-2">
+     <span class="dropdown btn bt-primary text-light bg-primary float-left m-3 ml-4"><a class="text-light" href="{% url 'papersyrbranch' year='1st' branch='NOBRANCH' %}">First Year</a></span>
+ </div>
+<div class="dropdown col-sm-2">
+			<span class="btn bt-primary text-light bg-primary float-left m-3">Second Year</span>
 			<div class="dropdown-item">
 				<a href="{% url 'papersyrbranch' year='2nd' branch='CSE' %}">CSE</a>
 				<br>
@@ -51,8 +54,8 @@ To Boost up your preperation</h3>
 			
 			
 		
-<div class="dropdown">
-			<span class="btn bt-primary text-light bg-primary float-left m-5">Third Year</span>
+<div class="dropdown col-sm-2 ">
+			<span class="btn bt-primary text-light bg-primary float-left m-3"> Third Year</span>
 			<div class="dropdown-item">
 				<a href="{% url 'papersyrbranch' year='3rd' branch='CSE' %}">CSE</a>
 				<br>
@@ -76,9 +79,9 @@ To Boost up your preperation</h3>
 </div>
 
 			
-<div class="dropdown">
-			
-      <span class="btn bt-primary text-light bg-primary float-left m-5">Final Year</span>
+<div class="dropdown col-sm-2">
+	<center>	
+      <span class="btn bt-primary text-light bg-primary align-self-center float-left m-3">Final Year</span>
 			<div class="dropdown-item">
 				<a href="{% url 'papersyrbranch' year='Final' branch='CSE' %}">CSE</a>
 				<br>
@@ -97,8 +100,9 @@ To Boost up your preperation</h3>
 			
 
 			</div>
+		</center>
 </div>
 </div>
 
-	</div>		
-{% endblock content %}
+		
+{% endblock %}

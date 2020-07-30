@@ -3,20 +3,21 @@
 {% load crispy_forms_tags %}
 {% block content %}
 <div class="container my-4">
-	<div class="jumbotron jumbotron-fluid">
+	<div class="jumbotron">
 
             <h3 class="mb-3 text-center text-primary">Your One Contribution may help many!</h3>
             <h4 class="mb-3 text-center">So what are you waiting for, go ahead and fill up the form</h4>
             
             
   <div
-            class="col-12 col-sm-8 col-md-6 col-lg-4 offset-sm-2 offset-md-3 offset-lg-4"
+            class="col-12 col-sm-12 col-md-6 col-lg-4 offset-sm-2 offset-md-3 offset-lg-4"
           >
     {% if user.is_authenticated %}
     
-    <form method="POST" class="Note_form mb-3" enctype="multipart/form-data">
+    <form method="POST" class="Note_form justify-content-center" enctype="multipart/form-data">
       {% csrf_token %}
        
+
       	<div class="row">
         <div class="form-group col-12 ">
              {{ form.title|as_crispy_field }}

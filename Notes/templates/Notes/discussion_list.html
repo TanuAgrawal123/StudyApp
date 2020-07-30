@@ -2,12 +2,14 @@
 {% load static %}
 
 {% block content %}
-<div class="container">
-    <div class="float-right">
-	
+<div class="mb-5 w-100">
+    <div>
+        <h1 class="text-center mt-5 text-primary">Discussion Panel</h1>
+    <div class="float-right m-5">
+
               <form class="form-inline m-1 float-left" method="GET">
                 <input ttype="text"
-                  placeholder="Search..."
+                  placeholder="Search By Tags ....."
                   class="form-control"
                   id='id_q'
                   name="q"
@@ -18,20 +20,24 @@
                 </a>
             </form>
             {% if user.is_authenticated %}
-            <div class="badge badge-warning m-1 float-left "><a href="{% url 'ask_doubt' %}" class="top-menu text-center"><i class="fa fa-plus">  Ask Doubt</i></span></a></div>
+            <div class="badge badge-warning m-2 float-left"><a href="{% url 'ask_doubt' %}" class="top-menu text-center"><i class="fa fa-plus"> Ask Doubt</i></a></div>
             {% endif %}
+     </div>   
     </div>
-     
+     </div>
 
 
-
-
-
-<div class="row">
-	
+	<
+<div class="container card">
+    
+    
+    <h2 class="text-center mt-5 text-danger">Feel free to ask anything &#x1F60A;</h2>
+    <br>
+    <br>
+    
 
         
-    <div class="col-12 ">
+
 
 {% if not posts %}
 <div class="emptyss text-center">
@@ -39,15 +45,15 @@
 </div>
 {% endif %}
 
+
+
+
+
             {% for post in posts %}
-            <div class="card text-dark border-white shadow p-3 
-            ">
-                
+            <div class="jumbotron bg-white">
+           
 
-               
-                    <div card="card-body">
-
-                    <h5><a  class="card-title" href="{% url 'disccusion_detail' pk=post.pk%}">{{ post.title }}</a></h5>
+                    <h5><a  class="cards-title" href="{% url 'disccusion_detail' pk=post.pk%}">{{ post.title }}</a></h5>
                     
                                   
                    
@@ -55,23 +61,23 @@
                  <div class="badge badge-primary m-2">{{tag}}</div>
                  {% endfor %}  
                 <br>
+                <br>
            
                 
                    
-                 <p class="card-subtitle small"><b>Posted On </b>: {{ post.published_date }}</p>
+                 <p class="cards-subtitle small"><b>Posted On </b>: {{ post.published_date }}</p>
                  <br>
-                 <p class="car-subtitle small"><b>Posted By</b>: {{post.user.username}}</p>
+                 <p class="cards-subtitle small"><b>Posted By</b>: {{post.user.username}}</p>
                  <br>
                  
              
-                                 
-            </div>
+          <hr class="bg-dark">     
         </div>
         
         <br>
-        <hr style="border-top: '1px solid black">
+       
             {% endfor %}
-        
+        </div>
      <div class="pagination m-2">
         
          <span class="step-links">
@@ -91,9 +97,9 @@
     </span>
    
     </div>
-</div>
+
 
 </div>
 
-</div>
+
 {% endblock %}

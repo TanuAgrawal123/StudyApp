@@ -37,7 +37,7 @@
 	</head>
 	<body>
 
-    	<nav class="navbar bg-primary navbar-dark navbar-expand-md ">
+    	<nav class="navbar bg-primary navbar-dark navbar-expand-sm ">
     		<a href="#" class="navbar-brand"><i class="fa fa-user-graduate"></i>GOD FOR COLLEGE STUDENT(GCS)</a>
     		<button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span></button>
@@ -89,8 +89,9 @@
     				<a href="{% url 'discussion_list' %}" class="nav-link">Discussion</a>
     			</li>
 
+    			
     			<li class="nav-item">
-    				<a href="{% url 'announcement' %}" class="nav-link">Announcements</a>
+    				<a href="{% url 'news' %}" class="nav-link">Tech news</a>
     			</li>
     			<li class="nav-item dropdown dropdown-sm">
             <a href="#0" class="nav-link dropdown-toggle" id="blogDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button"> Contribution Panel</a>
@@ -107,13 +108,13 @@
 
 {% if user.is_authenticated %}
         <li class="nav-item">
-          <a href="#" class="nav-link text-white">Welcome {{user.username}}!</a>
+          <a href="#" class="nav-link text-white">Hello {{user.username}}!</a>
         </li>
         <li>
 
         <form class="form-inline nav-item" action="{% url 'logout' %}" method="POST">
           {% csrf_token %}
-          <button type="submit" class="btn btn-success ml-2">Log out</button>
+          <button type="submit" class="btn btn-success ml-1">Log out</button>
         </form>
     </li>
         {% else %}
@@ -148,7 +149,7 @@
    <footer class="bg-light">
 
 						<div class="container mt-3">
-							<div class="row mt-2">
+							<div class="row mt-2 m-2">
                              <div class="col-12 col-sm-6 col-lg-3 mt-4">
 					         <h6>About Us</h6>
 					         Hello We are Here to provide all the study material of our college.
@@ -193,7 +194,7 @@
 							<li class="list-inline-item">All right reserved</li>
 							<li class="list-inline-item"><a href="#" data-toggle="modal" data-target="#modal">Terms of use and privacy policy</a></li>
 						</ul></div>
-						</div></div></div></div></footer>
+						</div></div></footer>
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>

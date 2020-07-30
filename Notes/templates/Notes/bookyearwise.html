@@ -5,10 +5,10 @@
 
 <div class="container p-5 align-item-center">
 <div class="row align-items-center">
-<div class="col-12 col-lg-4 align-items-center">
-<img class="books img-circle" src="{% static 'Notes/images/book.jpg' %}" alt="cannot upload">
+<div class="col-sm-4 align-items-center">
+<img class="m-2 responsive img-fluid img-rounded" src="{% static 'Notes/images/book.jpg' %}" alt="cannot upload">
 </div>
-<div class="col-12 col-lg-8 align-items-center text-center">
+<div class="col-sm-8 align-items-center text-center">
 
 <h1 class= "text-warning" >No Books? No Worries!!!!</h1>
 <h3 class="text-success">We got that covered. Get all the e-books <br>
@@ -21,10 +21,14 @@
 </div>
 </div>
 
-<div class="YearWise container align-items-center">
-     <span class="btn bt-primary text-light bg-primary float-left m-5"><a class="text-light" href="{% url 'booksyrbranch' year='1st' branch='NOBRANCH' %}">First Year</a></span>
-<div class="dropdown">
-			<span class="btn bt-primary text-light bg-primary float-left m-5">Second Year</span>
+<div class="row align-item-center">
+	
+
+	<div class="col-sm-2">
+     <span class="dropdown btn bt-primary text-light bg-primary float-left m-3 ml-4"><a class="text-light" href="{% url 'booksyrbranch' year='1st' branch='NOBRANCH' %}">First Year</a></span>
+ </div>
+<div class="dropdown col-sm-2">
+			<span class="btn bt-primary text-light bg-primary float-left m-3">Second Year</span>
 			<div class="dropdown-item">
 				<a href="{% url 'booksyrbranch' year='2nd' branch='CSE' %}">CSE</a>
 				<br>
@@ -48,8 +52,8 @@
 			
 			
 		
-<div class="dropdown">
-			<span class="btn bt-primary text-light bg-primary float-left m-5">Third Year</span>
+<div class="dropdown col-sm-2">
+			<span class="btn bt-primary text-light bg-primary float-left m-3">Third Year</span>
 			<div class="dropdown-item">
 				<a href="{% url 'booksyrbranch' year='3rd' branch='CSE' %}">CSE</a>
 				<br>
@@ -73,9 +77,9 @@
 </div>
 
 			
-<div class="dropdown">
+<div class="dropdown col-sm-2">
 			
-      <span class="btn bt-primary text-light bg-primary float-left m-5">Final Year</span>
+      <span class="btn bt-primary text-light bg-primary float-left m-3">Final Year</span>
 			<div class="dropdown-item">
 				<a href="{% url 'booksyrbranch' year='Final' branch='CSE' %}">CSE</a>
 				<br>
@@ -96,4 +100,5 @@
 			</div>
 </div>
 </div>
+
 {% endblock content %}

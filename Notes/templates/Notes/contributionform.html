@@ -10,14 +10,14 @@
             
             
   <div
-            class="col-12 col-sm-8 col-md-6 col-lg-4 offset-sm-2 offset-md-3 offset-lg-4"
+            class="col-12 col-sm-12 col-md-6 col-lg-4 offset-sm-2 offset-md-3 offset-lg-4"
           >
     {% if user.is_authenticated %}
     
     <form method="POST" class="Note_form mb-3" enctype="multipart/form-data">
       {% csrf_token %}
        
-      	<div class="row">
+      	<div class="row item-align-center">
         <div class="form-group col-12 ">
              {{ form.year|as_crispy_field }}
         </div>
@@ -34,16 +34,14 @@
         </div>
 
         
-      	
-      		<div class="form-group col-12 ">
-             {{ form.teacher|as_crispy_field }}
-        </div>
-        
-      	
-      		<div class="form-group col-12 ">
+      	 <div class="form-group col-12">
+                    {{form.teacher|as_crispy_field}}
+      		
+      	<br>
+      		<div class="form-group col-12 mr-5">
              {{ form.data|as_crispy_field }}
         </div>
-        <button type="submit" class="btn btn-primary btn-block mb-3">
+        <button type="submit" class="btn btn-primary btn-block m-3">
                 Submit
               </button>
         
