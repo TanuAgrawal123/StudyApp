@@ -15,7 +15,8 @@
 	
 
 	{% for books in books_cs_details %}
-	{% if books.num_likes > books.num_dislikes|add:books.num_dislikes %}
+	
+	{% if books.num_likes > books.num_dislikes|add:books.num_dislikes or  books.num_dislikes < 1 %}
 	<div class="jumbotron">
 	<br>
 	<h5>SUBJECT : {{ books.subject }}</h5>

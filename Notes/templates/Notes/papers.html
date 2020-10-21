@@ -1,4 +1,4 @@
-% extends 'Notes/base.html'  %}
+{% extends 'Notes/base.html'  %}
 {% load static %}
 
 {% block content %}
@@ -19,7 +19,8 @@
 	
 
 	{% for papers in papers_cs_details %}
-	{% if papers.num_likes > papers.num_dislikes|add:papers.num_dislikes %}
+	
+	{% if papers.num_likes > papers.num_dislikes|add:papers.num_dislikes or  papers.num_dislikes < 1 %}
 	<div class="jumbotron">
 	<br>
 	<h5>SUBJECT : {{ papers.subject }}</h5>
