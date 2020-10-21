@@ -7,17 +7,26 @@
         <h1 class="text-center mt-5 text-primary">Discussion Panel</h1>
     <div class="float-right m-5">
 
-              <form class="form-inline m-1 float-left" method="GET">
-                <input ttype="text"
+              <form class="form-inline m-1 float-left" method="GET" action="{% url 'discussion_list' %}">
+                <div class="input-group">
+                <input type="text"
                   placeholder="Search By Tags ....."
                   class="form-control"
                   id='id_q'
                   name="q"
                    class="form-control mr-sm-2" 
                     araia-label="search">
-                <a href="{% url 'discussion_list' %}" >
-                  <i class="fa fa-search m-2"></i>
-                </a>
+                
+                <div class="input-group-append">
+                    <button
+                                        class="btn btn-primary"
+                                        type="submit"
+                                    >
+                                        <i class="fas fa-search fa-sm"></i>
+                                    </button>
+            
+            </div>
+        </div>
             </form>
             {% if user.is_authenticated %}
             <div class="badge badge-warning m-2 float-left"><a href="{% url 'ask_doubt' %}" class="top-menu text-center"><i class="fa fa-plus"> Ask Doubt</i></a></div>

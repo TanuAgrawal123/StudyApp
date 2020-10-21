@@ -12,12 +12,15 @@
         <div class="row">
             <div class="col-12">
                     
-                    {% for posts, links, authors, timezone, linkauthor in zipped_data %}
-                    <a href ="{{links}}"><h5> {{posts}} </h5></a>
+                    {% for authors, titles, descriptions, urlss, publishedAts in zipped_data %}
+                    <a href ="{{links}}"><h5> {{titles}} </h5></a>
                     <br>
-                    <a class="text-info" href="{{linkauthor}}"><p>author: {{authors}}</p></a>
+                    <p class="text-info">author: {{authors}}</p>
                     
-                    <p class="small text-muted">{{timezone}}</p>
+                    <p class="small text-muted">{{publishedAts}}</p>
+
+                    <h6>{{descriptions}}</h6>
+                    <a href="{{urlss}}">More to Know</a>
 
                     <hr>
 

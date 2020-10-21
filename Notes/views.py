@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Notes, Teacher ,Student, Pdfbooks, Papers, User, Answer, Post, TechNews
+from .models import Notes, Teacher ,Student, Pdfbooks, Papers, User, Answer, Post
 from .forms import ContributionNoteForm, SignUpForm, ContributionBookForm,SignUpFormFaculty, PostForm, AnswerForm, ContributionPaperForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import  AuthenticationForm
@@ -240,6 +240,7 @@ def announcement(request):
 def post_list(request):
     post_list = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
     query = request.GET.get('q')
+    print(query)
     if query:
     	que=list(query.split(" "))
     	
@@ -358,36 +359,38 @@ def dislikes_answer(request, pk):
 
 
 def news(request):
-	url="https://techcrunch.com/"
-	r=requests.get(url)
-	htmlcontent=r.content
-	soup=BeautifulSoup(htmlcontent, 'html.parser')
-	items=soup.find_all('h2')
-	context={}
-
-	post=soup.find_all("header",class_='post-block__header')
-	L=[]
-	anchor=[]
+	url = ('http://newsapi.org/v2/top-headlines?country=in&category=technology&apiKey=a9e121ac903943919a0490ef5a38ef75')
+	response = requests.get(url).json()
+	
 	author=[]
-	time=[]
-	author_anchor=[]
-	j=0
-	print(post)
-	for i in post:
-		
-		L.append(i.find('a', class_='post-block__title__link').get_text().rstrip().strip())
-		anchor.append(i.find('a', class_='post-block__title__link').get("href"))
-		author.append(i.find('span', class_='river-byline__authors').get_text().rstrip())
-		time.append(i.find('time', class_='river-byline__time').get_text().rstrip())
-		s=i.find('span', class_='river-byline__authors')
-		author_anchor.append(s.find('a').get('href'))
+	title=[]
+	description=[]
+	urls=[]
+	publishedAt=[]
 
-
+	for i in response:
 		
-		j+=1
-	zipped=zip(L, anchor, author, time, author_anchor)
+		if i=="articles":
+			for j in response[i]:
+				
+				for z, p in j.items():
+					if z=="author":
+						author.append(p)
+					elif z=="title":
+						title.append(p)
+					elif z=="description":
+						description.append(p)
+					elif z=="url":
+						urls.append(p)
+					elif z=="publishedAt":
+						publishedAt.append(p[:10])
+	context={}
+	zipped=zip(author, title, description, urls, publishedAt)
 	context['zipped_data']=zipped
-		
+	print(author)		
 	return render(request, 'Notes/news.html',context)
 
+					
 	
+  
+    

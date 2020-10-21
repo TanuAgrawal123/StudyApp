@@ -207,14 +207,6 @@ class Like(models.Model):
 	paper=models.ForeignKey(Papers, on_delete=models.CASCADE, related_name='papers_like')
 	answer=models.ForeignKey(Answer, on_delete=models.CASCADE, related_name='answer_like' ,null=True)
 
-class TechNews(models.Model):
-	title=models.CharField(max_length=200)
-	image=models.URLField(null=True, blank=True)
-	url=models.TextField()
-
-	def __str__(self):
-		return self.title
-		
 
 
 
